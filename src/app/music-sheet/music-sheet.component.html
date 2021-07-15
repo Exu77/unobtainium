@@ -1,0 +1,39 @@
+
+<div class="tab-title">
+    <div>{{tabFile.name}}</div>
+    <button (click)="toggleSheet()">{{showMusicSheet ? 'hide' : 'show'}}</button>
+</div>
+
+<div [class.hidden]="!showMusicSheet">
+    <div class="at-wrap">
+        <div class="at-overlay">
+          <div class="at-overlay-content">
+            Music sheet is loading
+          </div>
+        </div>
+        <div class="at-content">
+            <div class="at-sidebar">
+                <div class="at-sidebar-content">
+                    <div class="at-track-list">
+                        <div *ngIf="score?.tracks?.length">
+                            <div *ngFor="let aTrack of score?.tracks" class="at-track" (click)="trackClick(aTrack)">
+                                <div class="at-track-icon">
+                                    <fa-icon [icon]="faGuitar"></fa-icon>
+                                </div>
+                                <div class="at-track-details">
+                                    <div class="at-track-name">{{aTrack.name}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="at-viewport">
+                <div class="at-main"></div>
+            </div>
+        </div>
+        <div class="at-controls">
+          Player controls will go here
+        </div>
+    </div>
+</div>

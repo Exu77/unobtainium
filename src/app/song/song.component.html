@@ -1,0 +1,36 @@
+<div class="song">
+  <div *ngIf="song?.imgUrl">
+    <img  [src]="song?.imgUrl"/>
+  </div>
+  <div *ngIf="song?.description">
+    <h3>Description:</h3>
+    {{song?.description}}
+  </div>
+
+  <div *ngIf="song?.chordSheets?.length > 0">
+    <div class="song-part-title">Cord Sheet:</div>
+    <div class="file-list" *ngFor="let aFile of song?.chordSheets">
+      <a  [href]="aFile.webViewLink" target="_blank">{{aFile.name}} ({{aFile.modifiedTime | date}})</a>
+    </div>
+  </div>
+
+
+  <div *ngIf="song?.recordings?.length > 0">
+    <div class="song-part-title">Aufnahmen</div>
+    <div class="audio-player" *ngFor="let aRec of song?.recordings">
+      <div class="audio-title">{{aRec.name}} ({{aRec.modifiedTime | date}})</div>
+      <audio controls>
+        <source [src]="aRec.webContentLink" type="{{aRec.mimeType}}">
+          Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+
+  <div *ngIf="song?.tabs?.length">
+    <div class="song-part-title">Tabs</div>
+    <div *ngFor="let aTab of song?.tabs">
+      <app-music-sheet [tabFile]="aTab"></app-music-sheet>
+    </div>
+    
+  </div>
+</div>

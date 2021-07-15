@@ -1,1 +1,10 @@
-<h1>Gloor was here</h1>
+<div class="titlePane"  routerLink="/">
+  UNOBTAINIUM
+</div>
+<div class="menuPane">
+<div class="menuItem" [routerLink]="['/album']" >
+  Members
+</div>
+</div>
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>

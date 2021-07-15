@@ -1,0 +1,29 @@
+.song {
+    // width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background: lightgrey;
+
+  .file-list {
+  }
+
+  .song-part-title {
+    font-weight: bold;
+    margin-top: 16px;
+  }
+
+  .audio-player {
+    margin-bottom: 16px;
+    .audio-title {
+      display: flex;
+      margin-bottom: 8px;
+      div {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  audio {
+    width: 100%;
+  }
+}

@@ -14,27 +14,31 @@ export class SongsService {
     private http: HttpClient,
   ) { }
 
+  getFilecontentUrl(fileId: string): string {
+    return `${environment.apiUrl}/${environment.apiUnsecure}/googleDrive/fileContent?id=${fileId}`;
+  }
+
   getFileContent(fileId: string): Observable<any> {
-    return this.http.get<any[]>(`${environment.apiUrl}/apiSecure/googleDrive/fileContent/${fileId}`);
+    return this.http.get<any[]>(this.getFilecontentUrl(fileId));
   }
 
   public getSong(songName: string): Observable<Song> {
-    return this.http.get<Song>(`${environment.apiUrl}/apiSecure/googleDrive/song?name=${songName}`)
+    return this.http.get<Song>(`${environment.apiUrl}/${environment.apiSecure}/googleDrive/song?name=${songName}`)
     .pipe(
       tap(song => {
         console.log('song', song);
       }),
-      catchError(this.handleError<Song>(`${environment.apiUrl}/apiSecure/googleDrive/song`, null))
+      catchError(this.handleError<Song>(`${environment.apiUrl}/${environment.apiSecure}/googleDrive/song`, null))
     );
   }
 
   public getSongFolders(): Observable<SongFolder[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/apiSecure/googleDrive/songFolders`)
+    return this.http.get<any[]>(`${environment.apiUrl}/${environment.apiSecure}/googleDrive/songFolders`)
     .pipe(
       tap(files => {
         console.log('songFolders', files);
       }),
-      catchError(this.handleError<any[]>(`${environment.apiUrl}/apiSecure/googleDrive/songFolders`, []))
+      catchError(this.handleError<any[]>(`${environment.apiUrl}/${environment.apiSecure}/googleDrive/songFolders`, []))
     );
   }
 

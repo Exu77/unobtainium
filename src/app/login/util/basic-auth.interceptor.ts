@@ -15,6 +15,7 @@ export class BasicAuthInterceptor implements HttpInterceptor {
     const user = this.authenticationService.userValue;
     const isLoggedIn = user && user.authdata;
     const isApiUrl = request.url.startsWith(environment.apiUrl);
+    console.log('auth interceptor', request.url, isApiUrl, user);
     console.log('interceptor', isApiUrl, request.url, environment.apiUrl, isLoggedIn)
     if (isLoggedIn && isApiUrl) {
         request = request.clone({

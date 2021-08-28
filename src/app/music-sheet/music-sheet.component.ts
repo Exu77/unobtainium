@@ -1,3 +1,4 @@
+import { SongsService } from './../services/songs.service';
 import { SongFile } from './../types/song.type';
 import { Component, OnInit, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AlphaTabApi, Settings, CoreSettings } from '@coderline/alphatab';
@@ -18,7 +19,7 @@ export class MusicSheetComponent implements OnInit, OnChanges {
 
     private alphaTabApi: AlphaTabApi;
 
-    constructor() {}
+    constructor(private readonly songsServie: SongsService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tabFile']) {
@@ -45,12 +46,12 @@ export class MusicSheetComponent implements OnInit, OnChanges {
       const main = wrapper.querySelector('.at-main') as HTMLElement;
       const alphaSettings = new Settings();
       alphaSettings.core.fontDirectory = 'assets/fonts/';
-      alphaSettings.core.scriptFile = 'https://cdn.jsdelivr.net/npm/@coderline/alphatab@1.0.1/dist/alphaTab.min.js';
+      alphaSettings.core.scriptFile = 'https://cdn.jsdelivr.net/npm/@coderline/alphatab@1.2.1/dist/alphaTab.min.js';
       // alphaSettings.core.scriptFile = 'https://cdn.jsdelivr.net/npm/@coderline/alphatab@latest/dist/alphaTab.min.js';
       alphaSettings.player.enablePlayer = true;
       alphaSettings.player.enableUserInteraction = true;
 
-      alphaSettings.core.file = '/api/googleDrive/fileContent?id=' + this.tabFile.id;
+      alphaSettings.core.file = this.songsServie.getFilecontentUrl(this.tabFile.id);
 
       this.alphaTabApi = new AlphaTabApi(main, alphaSettings);
 
@@ -73,4 +74,4 @@ export class MusicSheetComponent implements OnInit, OnChanges {
         this.score.tracks.forEach((track) => {});
       });
     }
-}
+  }

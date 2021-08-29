@@ -1,1 +1,1 @@
-web: node dist/serer.js
+web: node ./dist/serer.js

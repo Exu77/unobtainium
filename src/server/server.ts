@@ -39,6 +39,6 @@ app.all('*', function(req,res){
           // });
 
 // Start the app by listening on the default Heroku port
-app.listen(port || 3081, function() {
+app.listen(port, function() {
     console.log(`App is listening on port ${port}!`);
 });

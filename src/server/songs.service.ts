@@ -1,5 +1,5 @@
-import { Song } from './../app/types/song.type';
-import { SongFile, SongFolder } from '../app/types/song.type';
+import { Song } from './types/song.type';
+import { SongFile, SongFolder } from './types/song.type';
 import { Credentials } from './config/credentials';
 import CacheService from './cache.service';
 const { ErrorHandler } = require('./error.handler')

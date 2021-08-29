@@ -1,7 +1,6 @@
 {
   "name": "unobtainium-band-client",
   "version": "0.0.0",
-  "main": "dist/server.js",
   "scripts": {
     "ng": "ng",
     "start": "node dist/server.js",

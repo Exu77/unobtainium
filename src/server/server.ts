@@ -27,7 +27,7 @@ app.use(express.static(angularPath));
 const apiRoutes = new ApiRoutes(app);
 
 
-app.all('/*', function(req,res){
+app.get('*', function(req,res){
     console.log('index.hmtl', angularPath)
     res.header('Content-Type', 'text/html');
     res.status(200).sendFile(path.join(angularPath, 'index.html'));

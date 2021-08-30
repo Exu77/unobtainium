@@ -2,9 +2,17 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
-## Development server
+## Development Client
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Develpment Server
+Run 'npm run dev' the server will be started on `http://localhost:3080/`
+
+## Alphat Tab
+Kann weiter implementiert werden https://www.alphatab.net/docs/tutorial-web/viewport
+
+ev. könnte man auch umschwenken auf flat.io dort gibts einen online editor kostet aber einmalin 200.-- oder so
 
 ## Code scaffolding
 

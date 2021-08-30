@@ -11,17 +11,9 @@ export const environment = {
   storageBucket: "band-cherry.appspot.com",
   messagingSenderId: "962140947315",
   appId: "1:962140947315:web:6e6d5b5d7e0fee4e56fb06",
-  apiUrl: "",
+  apiUrl: "http://localhost:3080",
   apiUnsecure: "api",
   apiSecure: "apiSecure",
   apiPort: 3080
-};
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
+}
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.

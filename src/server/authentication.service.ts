@@ -2,7 +2,7 @@
 
 import { User } from './../app/types/user.type';
 export class AuthenticationService {
-    private users = [{userName: 'member', password: 'start1'}];
+    private users = [{userName: 'member', password: process.env.BASIC_PASSWORD || 'start1'}];
 
     constructor() {
 

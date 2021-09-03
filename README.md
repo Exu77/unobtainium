@@ -14,6 +14,10 @@ Kann weiter implementiert werden https://www.alphatab.net/docs/tutorial-web/view
 
 ev. könnte man auch umschwenken auf flat.io dort gibts einen online editor kostet aber einmalin 200.-- oder so
 
+## Security
+Habe die securtiy mit der Angular variante von diesem Tutorial umgesetzt 
+https://jasonwatmore.com/post/2018/09/24/nodejs-basic-authentication-tutorial-with-example-api
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.

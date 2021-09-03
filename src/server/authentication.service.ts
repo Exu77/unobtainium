@@ -2,15 +2,18 @@
 
 import { User } from './../app/types/user.type';
 export class AuthenticationService {
-    private users = [{userName: 'member', password: process.env.BASIC_PASSWORD || 'start1'}];
+    
+    private users: User[];
 
     constructor() {
+        this.users = [{username: 'member', password: process.env.BASIC_PASSWORD || 'start1'}];
+        console.log('auth server evn', process.env.BASIC_PASSWORD, this.users);
 
     }
     // blup
 
     public async authenticate(iUser: User) {
-        const user = this.users.find(u => u.userName === iUser.username && u.password === iUser.password);
+        const user = this.users.find(u => u.username === iUser.username && u.password === iUser.password);
         if (user) {
             const { password, ...userWithoutPassword } = user;
             return userWithoutPassword;

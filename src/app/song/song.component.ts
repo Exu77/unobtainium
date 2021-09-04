@@ -1,4 +1,4 @@
-import { Song } from './../types/song.type';
+import { Song } from './../../common/types/song.type';
 import { SongsService } from './../services/songs.service';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';

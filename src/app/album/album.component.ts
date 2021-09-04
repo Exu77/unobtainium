@@ -1,4 +1,4 @@
-import { SongFolder } from './../types/song.type';
+import { SongFolder } from './../../common/types/song.type';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { SongsService } from './../services/songs.service';

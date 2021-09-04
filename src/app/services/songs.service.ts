@@ -1,4 +1,4 @@
-import { Song, SongFolder } from './../types/song.type';
+import { Song, SongFolder } from './../../common/types/song.type';
 import { environment } from './../../environments/environment';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';

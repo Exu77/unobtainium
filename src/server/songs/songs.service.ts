@@ -1,7 +1,7 @@
 import { GoogleFileType } from './googleApi/googleFileType.model';
 import { GoogleApiHelper } from './googleApi/google-api-helper';
-import { Song } from './../app/types/song.type';
-import { SongFile, SongFolder } from './../app/types/song.type';
+import { Song } from './../common/types/song.type';
+import { SongFile, SongFolder } from './../common/types/song.type';
 import CacheService from './cache.service';
 const { ErrorHandler } = require('./error.handler')
 

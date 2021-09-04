@@ -1,6 +1,6 @@
 
 
-import { User } from './../app/types/user.type';
+import { User } from '../../common/types/user.type';
 export class AuthenticationService {
     
     private users: User[];

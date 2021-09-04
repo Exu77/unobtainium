@@ -1,5 +1,6 @@
+import { AuthenticationRoutes } from './authentication/authentication.routes';
 import express = require('express');
-import ApiRoutes from './api-routes';
+import { SongsRoutes } from './songs/songs.routes';
 
 const path = require("path");
 const app: express.Application = express();
@@ -24,8 +25,10 @@ console.log('angular path',angularPath, __dirname);
 app.use(express.static(angularPath));
 
 
-// all the other routes
-const apiRoutes = new ApiRoutes(app);
+// init the Routes
+AuthenticationRoutes.initRoutes(app);
+SongsRoutes.initRoutes(app);
+
 
 
 app.get('*', function(req,res){

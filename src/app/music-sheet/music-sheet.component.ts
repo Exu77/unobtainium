@@ -1,5 +1,5 @@
 import { SongsService } from './../services/songs.service';
-import { SongFile } from './../types/song.type';
+import { SongFile } from './../../common/types/song.type';
 import { Component, OnInit, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AlphaTabApi, Settings, CoreSettings } from '@coderline/alphatab';
 import { faGuitar, faDrum } from '@fortawesome/free-solid-svg-icons';

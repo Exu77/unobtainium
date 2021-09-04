@@ -1,17 +1,17 @@
-import { SongFolder } from './../../common/types/song.type';
+import { SongFolder } from '../../common/types/song.type';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { SongsService } from './../services/songs.service';
+import { SongsService } from '../services/songs.service';
 import { Component, OnInit } from '@angular/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { ThemePalette } from '@angular/material/core';
 
 @Component({
-  selector: 'app-album',
-  templateUrl: './album.component.html',
-  styleUrls: ['./album.component.scss']
+  selector: 'app-song-list',
+  templateUrl: './song-list.component.html',
+  styleUrls: ['./song-list.component.scss']
 })
-export class AlbumComponent implements OnInit {
+export class SongListComponent implements OnInit {
   public songs$: Observable<SongFolder[]>;
   public isLoading = true;
 

@@ -7,7 +7,7 @@ import { SongComponent } from './song/song.component';
 import { MusicSheetComponent } from './music-sheet/music-sheet.component';
 import { AuthGuard } from './login/util/auth.guard';
 import { LoginComponent } from './login/login.component';
-import { AlbumComponent } from './album/album.component';
+import { SongListComponent } from './song-list/song-list.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -21,7 +21,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const appRoutes: Routes = [
-  { path: 'album', component: AlbumComponent, canActivate: [AuthGuard]},
+  { path: 'song-list', component: SongListComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: '', component: MainPageComponent }
 ];
@@ -31,7 +31,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     SongComponent,
-    AlbumComponent,
+    SongListComponent,
     MainPageComponent,
     MusicSheetComponent,
     MainPageComponent,

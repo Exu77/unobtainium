@@ -50,12 +50,6 @@ class ApiRoutes {
                     }
                   }).catch(err => next(err));
           });
-          
-          // return index.html on page reload (angular routing)
-          // app.all('*', function (req, res) {
-          //   res.header('Content-Type', 'text/html');
-          //   res.status(200).sendFile(process.cwd() + '/unobtainium/dist/index.html');
-          // });
     }
 }
 

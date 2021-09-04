@@ -5,7 +5,7 @@ const path = require("path");
 const app: express.Application = express();
 
 const port = process.env.PORT || 3080;
-const angularPath = path.resolve(__dirname, '../angular-build');
+const angularPath = path.resolve(__dirname, '../../angular-build');
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());

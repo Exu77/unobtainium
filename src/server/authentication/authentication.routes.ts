@@ -8,11 +8,10 @@ export class AuthenticationRoutes {
         // init the security for all routes that start with the api_secure url
         app.use(AuthenticationConstants.URL_API_SECURE, authService.basicAuth);
 
-        app.post(`${AuthenticationConstants.URL_API_OPEN}/authenticate`, function (req, res, next) {
+        app.post(`/${AuthenticationConstants.URL_API_OPEN}/authenticate`, function (req, res, next) {
             console.log('blup athrenticate', req.body)
             authService.authenticate(req.body)
                   .then(user => {
-                    console.log('auth', user)
                     if (user) {
                       res.json(user);
                     } else {

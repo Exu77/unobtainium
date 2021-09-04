@@ -1,8 +1,8 @@
 import { SongsService } from './../services/songs.service';
 import { SongFile } from './../../common/types/song.type';
-import { Component, OnInit, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { AlphaTabApi, Settings, CoreSettings } from '@coderline/alphatab';
-import { faGuitar, faDrum } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AlphaTabApi, Settings } from '@coderline/alphatab';
+import { faGuitar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-music-sheet',

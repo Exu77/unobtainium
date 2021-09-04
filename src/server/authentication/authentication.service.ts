@@ -7,8 +7,6 @@ export class AuthenticationService {
 
     constructor() {
         this.users = [{username: 'member', password: process.env.BASIC_PASSWORD || 'start1'}];
-        console.log('auth server evn', process.env.BASIC_PASSWORD, this.users);
-
     }
     // blup
 

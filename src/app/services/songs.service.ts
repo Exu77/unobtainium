@@ -1,3 +1,4 @@
+import { AuthenticationConstants } from './../../common/constants/authentication.constants';
 import { Song, SongFolder } from './../../common/types/song.type';
 import { environment } from './../../environments/environment';
 import { catchError, tap, map } from 'rxjs/operators';
@@ -15,7 +16,7 @@ export class SongsService {
   ) { }
 
   getFilecontentUrl(fileId: string): string {
-    return `${environment.apiUrl}/${environment.apiUnsecure}/googleDrive/fileContent?id=${fileId}`;
+    return `${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/fileContent?id=${fileId}`;
   }
 
   getFileContent(fileId: string): Observable<any> {
@@ -23,22 +24,22 @@ export class SongsService {
   }
 
   public getSong(songName: string): Observable<Song> {
-    return this.http.get<Song>(`${environment.apiUrl}/${environment.apiSecure}/googleDrive/song?name=${songName}`)
+    return this.http.get<Song>(`${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/song?name=${songName}`)
     .pipe(
       tap(song => {
         console.log('song', song);
       }),
-      catchError(this.handleError<Song>(`${environment.apiUrl}/${environment.apiSecure}/googleDrive/song`, null))
+      catchError(this.handleError<Song>(`${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/song`, null))
     );
   }
 
   public getSongFolders(): Observable<SongFolder[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/${environment.apiSecure}/googleDrive/songFolders`)
+    return this.http.get<any[]>(`${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/songFolders`)
     .pipe(
       tap(files => {
         console.log('songFolders', files);
       }),
-      catchError(this.handleError<any[]>(`${environment.apiUrl}/${environment.apiSecure}/googleDrive/songFolders`, []))
+      catchError(this.handleError<any[]>(`${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/songFolders`, []))
     );
   }
 

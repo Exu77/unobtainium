@@ -1,9 +1,9 @@
-import { GoogleFileType } from './googleApi/googleFileType.model';
-import { GoogleApiHelper } from './googleApi/google-api-helper';
-import { Song } from './../common/types/song.type';
-import { SongFile, SongFolder } from './../common/types/song.type';
-import CacheService from './cache.service';
-const { ErrorHandler } = require('./error.handler')
+import { GoogleFileType } from './../googleApi/googleFileType.model';
+import { GoogleApiHelper } from '../googleApi/google-api-helper';
+import { Song } from '../../common/types/song.type';
+import { SongFile, SongFolder } from '../../common/types/song.type';
+import CacheService from '../cache.service';
+const { ErrorHandler } = require('./../error.handler')
 
 const {google} = require('googleapis');
 
@@ -79,7 +79,7 @@ class SongsService {
         } else if (aFile.mimeType === GoogleFileType.AUDIO_MP3 || aFile.mimeType === GoogleFileType.AUDIO_M4A || aFile.mimeType === GoogleFileType.AUDIO_MPEG) {
           songObj.recordings?.push(aFile);
         } else {
-          console.log('no idea what to do with this file', aFile.name, aFile.mimeType)
+          console.warn('no idea what to do with this file', aFile.name, aFile.mimeType)
         }
       }
 

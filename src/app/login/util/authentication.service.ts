@@ -1,3 +1,4 @@
+import { AuthenticationConstants } from './../../../common/constants/authentication.constants';
 import { User } from './../../../common/types/user.type';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -26,7 +27,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-      return this.http.post<any>(`${environment.apiUrl}/api/authenticate`, { username, password })
+      return this.http.post<any>(`${AuthenticationConstants.URL_API_OPEN}/api/authenticate`, { username, password })
           .pipe(map(user => {
               // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
               user.authdata = window.btoa(username + ':' + password);

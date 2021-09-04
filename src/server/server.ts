@@ -32,7 +32,6 @@ SongsRoutes.initRoutes(app);
 
 
 app.get('*', function(req,res){
-    console.log('index.hmtl xx', angularPath)
     res.header('Content-Type', 'text/html');
     res.status(200).sendFile(path.join(angularPath, 'index.html'));
     res.sendFile(path.join(angularPath, 'index.html'))

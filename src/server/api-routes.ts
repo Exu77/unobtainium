@@ -22,6 +22,7 @@ class ApiRoutes {
           });
           
           app.get(`${routeSecureApi}/googleDrive/songFolders`, function (req, res) {
+            console.log('song folder')
             songService.getSongFolders()
               .then(songFolders => res.json(songFolders))
               .catch(error => {

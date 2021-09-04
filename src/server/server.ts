@@ -5,6 +5,7 @@ const path = require("path");
 const app: express.Application = express();
 
 const port = process.env.PORT || 3080;
+// carefull depending on what we compile the number of folder to go back might change
 const angularPath = path.resolve(__dirname, '../../angular-build');
 
 const bodyParser = require("body-parser");
@@ -27,8 +28,8 @@ app.use(express.static(angularPath));
 const apiRoutes = new ApiRoutes(app);
 
 
-app.get('/*', function(req,res){
-    console.log('index.hmtl', angularPath)
+app.get('*', function(req,res){
+    console.log('index.hmtl xx', angularPath)
     res.header('Content-Type', 'text/html');
     res.status(200).sendFile(path.join(angularPath, 'index.html'));
     res.sendFile(path.join(angularPath, 'index.html'))

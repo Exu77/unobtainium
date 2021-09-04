@@ -11,7 +11,7 @@ export const environment = {
   storageBucket: "band-cherry.appspot.com",
   messagingSenderId: "962140947315",
   appId: "1:962140947315:web:6e6d5b5d7e0fee4e56fb06",
-  apiUrl: "http://localhost:3080",
+  apiUrl: "http://localhost:5000",
   apiUnsecure: "api",
   apiSecure: "apiSecure",
   apiPort: 3080

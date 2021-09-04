@@ -1,41 +1,27 @@
+import { GoogleFileType } from './googleApi/googleFileType.model';
+import { GoogleApiHelper } from './googleApi/google-api-helper';
 import { Song } from './../app/types/song.type';
 import { SongFile, SongFolder } from './../app/types/song.type';
-import { Credentials } from './config/credentials';
 import CacheService from './cache.service';
 const { ErrorHandler } = require('./error.handler')
 
 const {google} = require('googleapis');
 
 class SongsService {
-
-    private readonly rootFolder = '1Y9uRzpaVyJK8gKHci1lifSwY8SCvkg9J';
     private readonly scopes = ['https://www.googleapis.com/auth/drive'];
-
-    private readonly fileTypeFolder = 'application/vnd.google-apps.folder';
-    private readonly fileTypePdf = 'application/pdf';
-    private readonly fileTypeGuitarPro = 'application/gpx+xml';
-    private readonly fileTypeZip = 'application/x-zip'; 
-    private readonly fileTypeMp3 = 'audio/mp3';
-    private readonly fileTypeAudio1 = 'audio/mpeg';
-    private readonly fileTypeAudio2 = 'audio/x-m4a';
-    private readonly fileTypeWord = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-    private readonly fileTypeGoogleDocs = 'application/vnd.google-apps.document';
 
     private readonly cacheKeySong = 'getSong?'
     private readonly cacheKeySongFolders = 'getSongFolders'
     private readonly cacheKeyFileContent = 'getFileContent?'
 
     private readonly ttlSeconds = 1;
-    private googleAuth: any;
+    private googleApiHelper: GoogleApiHelper;
     private googleDrive: any;
     private cacheService: CacheService;
 
     constructor() {
-        this.googleAuth = new google.auth.JWT(
-            Credentials.GOOGLE_DRIVE_CREDENTIALS.client_email, null,
-            Credentials.GOOGLE_DRIVE_CREDENTIALS.private_key, this.scopes,
-        );
-        this.googleDrive = google.drive({ version: "v3", auth: this.googleAuth });
+        this.googleApiHelper = new GoogleApiHelper();
+        this.googleDrive = this.googleApiHelper.googleDrive
         this.cacheService = new CacheService(this.ttlSeconds);
     }
 
@@ -43,7 +29,7 @@ class SongsService {
         let result: SongFolder[] = [];
         const cacheKey = this.cacheKeySongFolders;
 
-        let queryString =  `'${this.rootFolder}' in parents and mimeType = '${this.fileTypeFolder}'`;
+        let queryString =  `'${this.googleApiHelper.rootFolder}' in parents and mimeType = '${GoogleFileType.FOLDER}'`;
         const cachedResult = this.cacheService.get(cacheKey) as SongFolder[];
         
         if (cachedResult) return Promise.resolve(cachedResult);
@@ -86,11 +72,11 @@ class SongsService {
   
       const songFiles = await this.getFileList(songObj.folderId, null);
       for (const aFile of songFiles) {
-        if (aFile.mimeType === this.fileTypePdf || aFile.mimeType === this.fileTypeWord || aFile.mimeType === this.fileTypeGoogleDocs) {
+        if (aFile.mimeType === GoogleFileType.PDF || aFile.mimeType === GoogleFileType.WORD || aFile.mimeType === GoogleFileType.GOOGLE_DOC) {
           songObj.chordSheets?.push(aFile);
-        } else if (aFile.mimeType === this.fileTypeGuitarPro || aFile.mimeType === this.fileTypeZip) {
+        } else if (aFile.mimeType === GoogleFileType.GUITAR_PRO || aFile.mimeType === GoogleFileType.ZIP) {
           songObj.tabs?.push(aFile);
-        } else if (aFile.mimeType === this.fileTypeMp3 || aFile.mimeType === this.fileTypeAudio1 || aFile.mimeType === this.fileTypeAudio2) {
+        } else if (aFile.mimeType === GoogleFileType.AUDIO_MP3 || aFile.mimeType === GoogleFileType.AUDIO_M4A || aFile.mimeType === GoogleFileType.AUDIO_MPEG) {
           songObj.recordings?.push(aFile);
         } else {
           console.log('no idea what to do with this file', aFile.name, aFile.mimeType)

@@ -18,7 +18,11 @@ export class AuthenticationService {
       private router: Router,
       private http: HttpClient
   ) {
-      this.userSubject = new BehaviorSubject<User | null>(JSON.parse(localStorage.getItem('user') || ''));
+      const storageUser = localStorage.getItem('user');
+      this.userSubject = new BehaviorSubject<User | null>(null);
+      if (storageUser) {
+          this.userSubject.next(JSON.parse(storageUser));
+      }
       this.user = this.userSubject.asObservable();
   }
 

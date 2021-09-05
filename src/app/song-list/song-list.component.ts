@@ -13,7 +13,7 @@ import { ThemePalette } from '@angular/material/core';
   templateUrl: './song-list.component.html',
   styleUrls: ['./song-list.component.scss']
 })
-export class SongListComponent implements OnInit {
+export class SongListComponent {
   public songs$: Observable<SongFolder[]>;
   public isLoading = true;
 
@@ -28,29 +28,7 @@ export class SongListComponent implements OnInit {
     private readonly songFolderService: SongListService,
 
   ) {
-    this.todoService.getTodos();
-    this.songFolderService.getSongFolders();
 
-    this.todoService.allTodos$.subscribe((todos: Todo[]) => {
-        this.todoCounter = {};
-        todos.forEach(aTodo => {
-          const aCount = this.todoCounter[aTodo.song.id];
-          if (aCount) {
-            this.todoCounter[aTodo.song.id] = aCount + 1;
-          } else {
-            this.todoCounter[aTodo.song.id] = 1;
-          }
-        });
-
-        console.log('blaaa', this.todoCounter);
-      });
-  }
-
-  ngOnInit() {
-    this.loadSongs();
-  }
-
-  public loadSongs() {
     this.isLoading = true;
     this.songs$ = this.songFolderService.songFolderList$.pipe(
       tap(resp => {
@@ -58,6 +36,22 @@ export class SongListComponent implements OnInit {
         console.log('songList?', resp)
       })
     );
-  }
 
+    this.todoService.getTodos();
+    this.songFolderService.getSongFolders();
+
+    this.todoService.allTodos$.subscribe((todos: Todo[]) => {
+        this.todoCounter = {};
+        todos.forEach(aTodo => {
+          if (aTodo?.song?.id) {
+            const aCount: number | undefined = this.todoCounter[aTodo.song.id];
+            if (aCount) {
+              this.todoCounter[aTodo.song.id] = aCount + 1;
+            } else {
+              this.todoCounter[aTodo.song.id] = 1;
+            }
+          }
+        });
+      });
+  }
 }

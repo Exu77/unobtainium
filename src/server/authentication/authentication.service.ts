@@ -37,5 +37,5 @@ export class AuthenticationService {
         req.user = user
     
         next();
-    }
+    } 
 }

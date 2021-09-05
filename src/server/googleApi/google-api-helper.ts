@@ -69,10 +69,9 @@ export class GoogleApiHelper {
             media: media,
             }, (err: any, res: any) => {
                 if (err) {
-                    console.log(err);
+                    console.error('update file', err);
                     return;
                 }
-                console.log(res.data);
             });
       }
 }

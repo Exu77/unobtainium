@@ -12,7 +12,7 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
     providedIn: 'root'
 })
 export class TodoService {
-    public allTodos$: BehaviorSubject<Todo[]> = new BehaviorSubject([]);
+    public allTodos$: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
     public faPencil = faPencilAlt;
     constructor(
         private http: HttpClient,
@@ -22,7 +22,6 @@ export class TodoService {
         const url = `${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/todos/getAll`;
         this.http.get<Todo[]>(url)
             .subscribe(todoList => {
-                console.log('song', todoList);
                 this.allTodos$.next(todoList);
             },
             catchError(ErrorUtil.handleError<any>(url, null))
@@ -33,7 +32,6 @@ export class TodoService {
         const url = `${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/todos/`;
         this.http.post<Todo[]>(url, aTodo)
         .subscribe(todoList => {
-            console.log('updated List', todoList);
             this.allTodos$.next(todoList);
         },
         catchError(ErrorUtil.handleError<any>(url, null))
@@ -44,7 +42,6 @@ export class TodoService {
         const url = `${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/todos/${aTodo.id}`;
         this.http.delete<Todo[]>(url)
         .subscribe(todoList => {
-            console.log('updated List', todoList);
             this.allTodos$.next(todoList);
         },
         catchError(ErrorUtil.handleError<any>(url, null))

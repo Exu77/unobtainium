@@ -40,7 +40,6 @@ export class TodoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: Todo) => {
       if(result) {
-        console.log('The dialog was closed', result);
         this.todoService.saveTodo(result);
       }
       
@@ -48,7 +47,6 @@ export class TodoComponent implements OnInit {
   }
 
   public openDeletetDialog(aTodo: Todo): void {
-    console.log('delete', aTodo);
     const dialogRef = this.dialog.open(DeleteTodoComponent, {
       width: '80%',
       data: aTodo
@@ -56,7 +54,6 @@ export class TodoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: Todo) => {
       if(result) {
-        console.log('The dialog was closed', result);
         this.todoService.deleteTodo(result);
       }
       

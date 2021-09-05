@@ -21,8 +21,6 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-console.log('angular path',angularPath, __dirname);
-
 // handle Angular
 app.use(express.static(angularPath));
 

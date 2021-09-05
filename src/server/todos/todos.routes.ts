@@ -7,9 +7,8 @@ export class TodosRoutes {
 
     public static initRoutes(app: express.Application, googleApiHelper: GoogleApiHelper) {
         const todosService = new TodosService(googleApiHelper);
-        console.log('bal', `/${AuthenticationConstants.URL_API_SECURE}/todos/getAll`);
+
         app.get(`/${AuthenticationConstants.URL_API_SECURE}/todos/getAll`, function (req, res) {
-            console.log('blup');
             todosService.getAll()
             .then((response: any) => {
                 return res.json(response);

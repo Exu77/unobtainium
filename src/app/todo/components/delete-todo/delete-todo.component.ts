@@ -12,9 +12,7 @@ export class DeleteTodoComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DeleteTodoComponent>,
     @Inject(MAT_DIALOG_DATA) public aTodo: Todo,
-  ) { 
-    console.log('xxxx', aTodo)
-  }
+  ) {}
 
   ngOnInit(): void {
   }

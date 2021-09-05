@@ -11,14 +11,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SongListService {
-  public readonly songFolderList$: BehaviorSubject<SongFolder[]> = new BehaviorSubject([]);
+  public readonly songFolderList$: BehaviorSubject<SongFolder[]> = new BehaviorSubject<SongFolder[]>([]);
 
   constructor(
     private http: HttpClient,
   ) { }
 
   getFilecontentUrl(fileId: string): string {
-    return `${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/fileContent?id=${fileId}`;
+    return `${environment.apiUrl}/${AuthenticationConstants.URL_API_OPEN}/googleDrive/fileContent?id=${fileId}`;
   }
 
   getFileContent(fileId: string): Observable<any> {
@@ -28,10 +28,8 @@ export class SongListService {
   public getSong(songName: string): Observable<Song> {
     return this.http.get<Song>(`${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/song?name=${songName}`)
     .pipe(
-      tap(song => {
-        console.log('song', song);
-      }),
-      catchError(ErrorUtil.handleError<Song>(`${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/song`, null))
+      tap(song => {}),
+      catchError(ErrorUtil.handleError<Song>(`${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/song`))
     );
   }
 

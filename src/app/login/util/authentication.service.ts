@@ -11,19 +11,19 @@ import { environment } from './../../../environments/environment';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private userSubject: BehaviorSubject<User>;
-  public user: Observable<User>;
+  private userSubject: BehaviorSubject<User | null>;
+  public user: Observable<User | null>;
 
   constructor(
       private router: Router,
       private http: HttpClient
   ) {
-      this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+      this.userSubject = new BehaviorSubject<User | null>(JSON.parse(localStorage.getItem('user') || ''));
       this.user = this.userSubject.asObservable();
   }
 
-  public get userValue(): User {
-      return this.userSubject.value;
+  public get userValue(): User | null {
+      return this.userSubject?.value;
   }
 
   login(username: string, password: string) {

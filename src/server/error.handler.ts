@@ -14,7 +14,7 @@ class ErrorHandler extends Error {
 
   constructor(statusCode: number, message: string) {
     super();
-    console.log('Error', statusCode, message)
+    console.error('Error', statusCode, message)
     this.statusCode = statusCode;
     this.message = message;
   }

@@ -21,13 +21,9 @@ export class TodosService {
     public async getAll(): Promise<Todo[]> {
         let result: Todo[] = [];
         const todoFileId = await this.getTodoFileId();
-        console.log('todoFileId', todoFileId);
         if(todoFileId) {
             const tempResult = await this.googleApiHelper.getTextFileAsString(todoFileId);
-            console.log('tempresult', tempResult);
-            console.log('parsed', JSON.parse(tempResult))
             result = JSON.parse(tempResult) as Todo[];
-            console.log('got todo json', result);
         }
         return result;
     }
@@ -42,7 +38,6 @@ export class TodosService {
         }
 
         const todoIdx = this.getTodoListIndex(todoList, inputTodo.id);
-        console.log('update Todo', inputTodo, todoIdx);
         if (todoIdx === -1) {
             todoList.push(inputTodo);
         } else {

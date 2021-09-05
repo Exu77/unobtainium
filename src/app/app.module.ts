@@ -1,3 +1,4 @@
+import { SongLevelService } from './song-level/song-level.service';
 import { TodoService } from './todo/todo.service';
 import { SongListService } from './song-list/songs-list.service';
 import { ErrorInterceptor } from './login/util/error.interceptor';
@@ -28,6 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { DeleteTodoComponent } from './todo/components/delete-todo/delete-todo.component';
+import { SongLevelComponent } from './song-level/song-level.component';
 
 const appRoutes: Routes = [
   { path: 'song-list', component: SongListComponent, canActivate: [AuthGuard]},
@@ -48,6 +50,7 @@ const appRoutes: Routes = [
     TodoComponent,
     EditTodoComponent,
     DeleteTodoComponent,
+    SongLevelComponent,
   ],
   imports: [
     CommonModule,
@@ -70,7 +73,8 @@ const appRoutes: Routes = [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     SongListService,
-    TodoService
+    TodoService,
+    SongLevelService,
   ],
   bootstrap: [AppComponent]
 })

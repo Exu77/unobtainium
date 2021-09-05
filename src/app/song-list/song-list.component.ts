@@ -1,3 +1,4 @@
+import { SongLevelService } from './../song-level/song-level.service';
 import { Todo } from './../../common/types/todo.type';
 import { TodoService } from './../todo/todo.service';
 import { SongListService } from './songs-list.service';
@@ -26,6 +27,7 @@ export class SongListComponent {
   constructor(
     private readonly todoService: TodoService,
     private readonly songFolderService: SongListService,
+    private readonly songLevelService: SongLevelService,
 
   ) {
 
@@ -39,6 +41,7 @@ export class SongListComponent {
 
     this.todoService.getTodos();
     this.songFolderService.getSongFolders();
+    this.songLevelService.getAll();
 
     this.todoService.allTodos$.subscribe((todos: Todo[]) => {
         this.todoCounter = {};

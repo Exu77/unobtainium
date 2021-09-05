@@ -1,8 +1,8 @@
 import { GoogleApiHelper } from './googleApi/google-api-helper';
-import { TodosRoutes } from './todos/todos.routes';
 import { AuthenticationRoutes } from './authentication/authentication.routes';
 import express = require('express');
 import { SongsRoutes } from './songs/songs.routes';
+import { JsonFileManagerRoutes } from './googleApi/json-file-manager.routes';
 
 const path = require("path");
 const app: express.Application = express();
@@ -29,7 +29,10 @@ app.use(express.static(angularPath));
 const googleApiHelper = new GoogleApiHelper();
 AuthenticationRoutes.initRoutes(app);
 SongsRoutes.initRoutes(app, googleApiHelper);
-TodosRoutes.initRoutes(app, googleApiHelper);
+JsonFileManagerRoutes.initRoutes(app, googleApiHelper, 'todos.json', 'todos')
+JsonFileManagerRoutes.initRoutes(app, googleApiHelper, 'song-level.json', 'song-level')
+
+//TodosRoutes.initRoutes(app, googleApiHelper);
 
 
 

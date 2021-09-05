@@ -3,4 +3,9 @@
   padding: 20px;
   color: white;
   background: black;
+  mat-expansion-panel-header {
+    mat-panel-title {
+      justify-content: space-between;
+    }
+  }
 }

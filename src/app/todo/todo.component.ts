@@ -13,20 +13,20 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent implements OnInit {
+  public showData = false;
+  public todoList: Todo[] = [];
   public numberOfTodos = 0;
-  public todoList$: Observable<Todo[]>;
   public displayedColumns: string[] = ["song", "descr", "resp", "actions"];
 
   constructor(
     private readonly todoService: TodoService,
     public dialog: MatDialog
   ) { 
-    this.todoList$ = todoService.allTodos$.pipe(
-        tap(todoList => {
-          this.numberOfTodos = todoList.length;
+    todoService.allTodos$.subscribe(todoList => {
+        this.todoList = todoList;
+        this.numberOfTodos = todoList.length;
         console.log('todoList', todoList);
-      })
-    );
+    });
   }
 
   ngOnInit(): void {

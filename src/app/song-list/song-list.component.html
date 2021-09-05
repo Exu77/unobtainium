@@ -6,7 +6,11 @@
       <mat-expansion-panel *ngFor="let aSong of songs$ | async" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{aSong.name}} <span *ngIf="todoCounter[aSong.id]">&nbsp;({{todoCounter[aSong.id]}})</span>
+            <div>
+              <span>{{aSong.name}}</span>
+              <span *ngIf="todoCounter[aSong.id]">&nbsp;({{todoCounter[aSong.id]}})</span>
+            </div>
+            <app-song-level [songFolder]="aSong"></app-song-level>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <ng-template matExpansionPanelContent>

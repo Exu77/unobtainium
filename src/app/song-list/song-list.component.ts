@@ -35,7 +35,6 @@ export class SongListComponent {
     this.songs$ = this.songFolderService.songFolderList$.pipe(
       tap(resp => {
         this.isLoading = false;
-        console.log('songList?', resp)
       })
     );
 

@@ -32,7 +32,6 @@ export class SongLevelComponent {
   }
 
   public updateProficiency(event: any, aProf: number): void {
-    console.log('update',  aProf)
     this.currentSongLevel.proficiency = aProf;
     this.songLevelService.save(this.currentSongLevel);
     event.stopPropagation();

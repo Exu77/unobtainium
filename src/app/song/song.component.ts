@@ -1,5 +1,5 @@
 import { SongListService } from './../song-list/songs-list.service';
-import { Song } from './../../common/types/song.type';
+import { Song, SongFolder } from './../../common/types/song.type';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
@@ -12,11 +12,11 @@ export class SongComponent implements OnInit {
   public song: Song;
 
   @Input()
-  public songName: string;
+  public songFolder: SongFolder;
   constructor(private songService: SongListService) { } 
 
   ngOnInit() {
-      this.songService.getSong(this.songName).subscribe(aSong => {
+      this.songService.getSong(this.songFolder.name).subscribe(aSong => {
         this.song = aSong;
       });
   }

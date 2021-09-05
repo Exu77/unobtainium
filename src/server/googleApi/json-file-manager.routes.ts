@@ -8,8 +8,6 @@ export class JsonFileManagerRoutes {
     public static initRoutes(app: express.Application, googleApiHelper: GoogleApiHelper, fileName: string, routeName: string) {
         const jsonService = new JsonFileManager(googleApiHelper, fileName);
 
-
-        console.log('todo routes', `/${AuthenticationConstants.URL_API_SECURE}/${routeName}/getAll`)
         app.get(`/${AuthenticationConstants.URL_API_SECURE}/${routeName}/getAll`, function (req, res) {
             console.log('get all totods')
             jsonService.getAll()

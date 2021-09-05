@@ -1,11 +1,8 @@
 <h2 class="title-row"  (click)="showData = !showData">
-    <div>Todos <span class="header-counter" *ngIf="numberOfTodos">({{numberOfTodos}})</span></div>
+    <div>Todos <span class="header-counter" *ngIf="todoList?.length">({{todoList?.length}})</span></div>
     <div>
-        <div class="material-icons" (click)="openEditDialog({})">
+        <div class="material-icons" (click)="openEditDialog({song: songFolder})">
             add
-        </div>
-        <div class="material-icons" (click)="refresh()">
-            refresh
         </div>
     </div>
 </h2>

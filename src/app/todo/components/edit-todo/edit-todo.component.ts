@@ -19,12 +19,7 @@ export class EditTodoComponent implements OnInit {
     private readonly songListService: SongListService,
     @Inject(MAT_DIALOG_DATA) public aTodo: Todo
   ) {
-    this.songFolders$ = this.songListService.songFolderList$.pipe(
-      tap(blup => {
-        console.log('edit songfolder', blup)
-      })
-    );
-    console.log('xxxx', aTodo)
+    this.songFolders$ = this.songListService.songFolderList$;
   };
 
   ngOnInit(): void {

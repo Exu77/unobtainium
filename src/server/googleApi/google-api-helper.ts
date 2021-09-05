@@ -35,7 +35,8 @@ export class GoogleApiHelper {
             this.googleDrive.files.get(
                 {fileId: id, alt: "media",},
                 {responseType: "stream"},
-                (err: any, data: any) => {
+                // @ts-ignore
+                (err: any, { data }) => {
                   if (err) {
                     console.error('error first', err);
                     reject('error first');

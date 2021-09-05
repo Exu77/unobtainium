@@ -9,15 +9,15 @@ export class AuthenticationRoutes {
         app.use(AuthenticationConstants.URL_API_SECURE, authService.basicAuth);
 
         app.post(`/${AuthenticationConstants.URL_API_OPEN}/authenticate`, function (req, res, next) {
-            console.log('blup athrenticate', req.body)
-            authService.authenticate(req.body)
-                  .then(user => {
-                    if (user) {
-                      res.json(user);
-                    } else {
-                      res.status(400).json({ message: 'Password is incorrect' });
-                    }
-                  }).catch(err => next(err));
-          });
+          console.log('blup athrenticate', req.body)
+          authService.authenticate(req.body)
+                .then(user => {
+                  if (user) {
+                    res.json(user);
+                  } else {
+                    res.status(400).json({ message: 'Password is incorrect' });
+                  }
+                }).catch(err => next(err));
+        });
     }
 }

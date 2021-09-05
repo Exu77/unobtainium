@@ -8,4 +8,5 @@ export class GoogleFileType {
     public static readonly AUDIO_M4A = 'audio/x-m4a';
     public static readonly WORD = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
     public static readonly GOOGLE_DOC = 'application/vnd.google-apps.document';
+    public static readonly JSON = 'application/json';
 }

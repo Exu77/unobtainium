@@ -1,4 +1,9 @@
-.titlePane {
+
+
+.app {
+  background-color: black;
+
+  .titlePane {
     line-height: 150px;
     background-color: black;
     height: 150px;
@@ -12,6 +17,7 @@
   
   .titlePane {
     .title {
+      user-select: none;
       text-shadow: 0 0 50px white;
       
 
@@ -34,15 +40,17 @@
     
   
     .menuItem {
+      user-select: none;
       width: fit-content;
       padding: 5px;
       margin: 5px;
+      font-weight: normal;
 
       cursor: pointer;
 
       &:hover {
-        background-color: white;
-        color: black;
+        font-weight: bold;
       }
     }
   }
+}

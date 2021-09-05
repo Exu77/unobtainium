@@ -1,3 +1,5 @@
+import { GoogleApiHelper } from './googleApi/google-api-helper';
+import { TodosRoutes } from './todos/todos.routes';
 import { AuthenticationRoutes } from './authentication/authentication.routes';
 import express = require('express');
 import { SongsRoutes } from './songs/songs.routes';
@@ -26,8 +28,10 @@ app.use(express.static(angularPath));
 
 
 // init the Routes
+const googleApiHelper = new GoogleApiHelper();
 AuthenticationRoutes.initRoutes(app);
-SongsRoutes.initRoutes(app);
+SongsRoutes.initRoutes(app, googleApiHelper);
+TodosRoutes.initRoutes(app, googleApiHelper);
 
 
 

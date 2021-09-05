@@ -18,6 +18,9 @@ ev. könnte man auch umschwenken auf flat.io dort gibts einen online editor kost
 Habe die securtiy mit der Angular variante von diesem Tutorial umgesetzt 
 https://jasonwatmore.com/post/2018/09/24/nodejs-basic-authentication-tutorial-with-example-api
 
+## Icons
+angular material icons https://fonts.google.com/icons?selected=Material+Icons&icon.query=
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.

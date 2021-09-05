@@ -2,3 +2,14 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+ .material-icons {
+    user-select: none;
+    cursor: pointer;
+    padding: 5px;
+
+    &:hover {
+        font-weight: bolder;
+    }
+  } 

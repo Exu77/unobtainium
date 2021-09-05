@@ -5,11 +5,7 @@ import { SongFile, SongFolder } from '../../common/types/song.type';
 import CacheService from '../cache.service';
 const { ErrorHandler } = require('./../error.handler')
 
-const {google} = require('googleapis');
-
 class SongsService {
-    private readonly scopes = ['https://www.googleapis.com/auth/drive'];
-
     private readonly cacheKeySong = 'getSong?'
     private readonly cacheKeySongFolders = 'getSongFolders'
     private readonly cacheKeyFileContent = 'getFileContent?'
@@ -19,9 +15,9 @@ class SongsService {
     private googleDrive: any;
     private cacheService: CacheService;
 
-    constructor() {
-        this.googleApiHelper = new GoogleApiHelper();
-        this.googleDrive = this.googleApiHelper.googleDrive
+    constructor(googleApiHelper: GoogleApiHelper) {
+        this.googleApiHelper = googleApiHelper;
+        this.googleDrive = this.googleApiHelper.googleDrive;
         this.cacheService = new CacheService(this.ttlSeconds);
     }
 
@@ -86,16 +82,6 @@ class SongsService {
       this.cacheService.set(cacheKey, songObj);
 
       return songObj;
-    }
-
-    public async getFileContent(id: string): Promise<any> {
-      // Tried to cache it but it didn't work
-      const result = await this.googleDrive.files.get({
-        fileId: id,
-        alt: 'media',
-      }, { responseType: 'stream' })
-
-      return result;
     }
 
     private async getFolder(name: string | null, id: string | null): Promise<SongFolder> {

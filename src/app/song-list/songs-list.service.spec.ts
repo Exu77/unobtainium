@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SongsService } from './songs.service';
+import { SongsService } from './songs-list.service';
 
 describe('SongsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

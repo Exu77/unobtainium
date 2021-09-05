@@ -1,4 +1,4 @@
-import { SongsService } from './../services/songs.service';
+import { SongListService } from './../song-list/songs-list.service';
 import { SongFile } from './../../common/types/song.type';
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AlphaTabApi, Settings } from '@coderline/alphatab';
@@ -19,7 +19,7 @@ export class MusicSheetComponent implements OnInit, OnChanges {
 
     private alphaTabApi: AlphaTabApi;
 
-    constructor(private readonly songsServie: SongsService) {}
+    constructor(private readonly songListService: SongListService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tabFile']) {
@@ -51,7 +51,7 @@ export class MusicSheetComponent implements OnInit, OnChanges {
       alphaSettings.player.enablePlayer = true;
       alphaSettings.player.enableUserInteraction = true;
 
-      alphaSettings.core.file = this.songsServie.getFilecontentUrl(this.tabFile.id);
+      alphaSettings.core.file = this.songListService.getFilecontentUrl(this.tabFile.id);
 
       this.alphaTabApi = new AlphaTabApi(main, alphaSettings);
 

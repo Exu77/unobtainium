@@ -1,15 +1,16 @@
+import { GoogleApiHelper } from './../googleApi/google-api-helper';
 import { AuthenticationConstants } from './../../common/constants/authentication.constants';
 import express = require('express');
 import SongsService from './songs.service';
 
 export class SongsRoutes {    
-  public static initRoutes(app: express.Application) {
-        const songService: SongsService = new SongsService(); 
+  public static initRoutes(app: express.Application, googleApiHelper: GoogleApiHelper) {
+        const songService: SongsService = new SongsService(googleApiHelper); 
 
         // TODO: the Alphatab can't really load files behind the securty as the interceptor does not work
         // otherwise it should be secured 
         app.get(`/${AuthenticationConstants.URL_API_OPEN}/googleDrive/fileContent`, function (req, res) {
-            songService.getFileContent(req.query.id as string)
+          googleApiHelper.streamFileContent(req.query.id as string)
               .then((response: any) => {
                 response.data.pipe(res);
               })

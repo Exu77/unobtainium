@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlbumComponent } from './song-list.component';
+import { DeleteTodoComponent } from './delete-todo.component';
 
-describe('AlbumComponent', () => {
-  let component: AlbumComponent;
-  let fixture: ComponentFixture<AlbumComponent>;
+describe('DeleteTodoComponent', () => {
+  let component: DeleteTodoComponent;
+  let fixture: ComponentFixture<DeleteTodoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlbumComponent ]
+      declarations: [ DeleteTodoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AlbumComponent);
+    fixture = TestBed.createComponent(DeleteTodoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

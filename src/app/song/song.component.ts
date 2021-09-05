@@ -1,5 +1,5 @@
+import { SongListService } from './../song-list/songs-list.service';
 import { Song } from './../../common/types/song.type';
-import { SongsService } from './../services/songs.service';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
@@ -15,7 +15,7 @@ export class SongComponent implements OnInit {
   public songName: string;
   constructor(private _Activatedroute: ActivatedRoute,
               private _router: Router,
-              private songService: SongsService) { } 
+              private songService: SongListService) { } 
 
   sub;
 

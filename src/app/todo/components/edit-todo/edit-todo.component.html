@@ -1,0 +1,28 @@
+<h1 mat-dialog-title class="title-row">
+    Edit Todo
+</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>Song</mat-label>
+        <mat-select 
+                [compareWith]="compareSongFolders"
+                [(ngModel)]="aTodo.song">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let aSong of songFolders$ | async" [value]="aSong">
+            {{aSong.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+   <mat-form-field class="description" appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="aTodo.description"></textarea>
+  </mat-form-field>
+  <mat-form-field  appearance="fill">
+    <mat-label>Responsible</mat-label>
+    <input matInput [(ngModel)]="aTodo.responsible">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="aTodo" cdkFocusInitial>Save</button>
+</div>

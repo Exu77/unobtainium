@@ -1,4 +1,7 @@
+import { GoogleFileType } from './googleFileType.model';
+const stream = require('stream');
 const {google} = require('googleapis');
+const fs = require('fs');
 
 export class GoogleApiHelper {
     public googleDrive: any;
@@ -15,4 +18,60 @@ export class GoogleApiHelper {
         );
         this.googleDrive = google.drive({ version: "v3", auth: this.googleAuth });
     }
+
+    public async streamFileContent(id: string): Promise<any> {
+        // Tried to cache it but it didn't work
+        const result = await this.googleDrive.files.get({
+          fileId: id,
+          alt: 'media',
+        }, { responseType: 'stream' })
+  
+        return result;
+      }
+
+      public async getTextFileAsString(id: string): Promise<string> {
+        // Tried to cache it but it didn't work
+        return new Promise((resolve, reject) => {
+            this.googleDrive.files.get(
+                {fileId: id, alt: "media",},
+                {responseType: "stream"},
+                (err, { data }) => {
+                  if (err) {
+                    console.error('error first', err);
+                    reject('error first');
+                  }
+                  const buf: any[] = [];
+                  data.on("data", (e) => buf.push(e));
+                  data.on("end", () => {
+                    const buffer = Buffer.concat(buf);
+                    return resolve(buffer.toString('utf8'));
+                  });
+                }
+              );
+        });
+      } 
+
+      public async updateJsonFile(id: string, content: any): Promise<void> {
+          const file = JSON.stringify(content);
+          const buf = Buffer.from(file, 'binary');
+          const buffer = Uint8Array.from(buf);
+          var bufferStream = new stream.PassThrough();
+          bufferStream.end(buffer);
+
+          const media = {
+            mimeType: GoogleFileType.JSON,
+            body: bufferStream,
+        };
+
+          this.googleDrive.files.update({
+            fileId: id,
+            media: media,
+            }, (err, res) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.log(res.data);
+            });
+      }
 }

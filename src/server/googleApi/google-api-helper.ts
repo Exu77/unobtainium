@@ -35,13 +35,13 @@ export class GoogleApiHelper {
             this.googleDrive.files.get(
                 {fileId: id, alt: "media",},
                 {responseType: "stream"},
-                (err, { data }) => {
+                (err: any, data: any) => {
                   if (err) {
                     console.error('error first', err);
                     reject('error first');
                   }
                   const buf: any[] = [];
-                  data.on("data", (e) => buf.push(e));
+                  data.on("data", (e: any) => buf.push(e));
                   data.on("end", () => {
                     const buffer = Buffer.concat(buf);
                     return resolve(buffer.toString('utf8'));
@@ -66,7 +66,7 @@ export class GoogleApiHelper {
           this.googleDrive.files.update({
             fileId: id,
             media: media,
-            }, (err, res) => {
+            }, (err: any, res: any) => {
                 if (err) {
                     console.log(err);
                     return;

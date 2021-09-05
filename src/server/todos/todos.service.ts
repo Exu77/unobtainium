@@ -9,7 +9,7 @@ const {
 export class TodosService {
     private googleApiHelper: GoogleApiHelper;
     private googleDrive: any;
-    private todoFileId: string;
+    private todoFileId: string | undefined;
 
     private readonly todoFileName = 'todos.json';
 

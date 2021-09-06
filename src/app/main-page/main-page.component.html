@@ -7,7 +7,17 @@
     </div>
     <div class="newsPane">
         <h1>NEWS</h1>
-        <div class="fb-page" data-href="https://www.facebook.com/unobtainium.li/" data-tabs="timeline" data-width="500" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/unobtainium.li/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/unobtainium.li/">Unobtainium</a></blockquote></div>
+        <div ng-if="pluginOn" onrender="rendered()" 
+                class="fb-page" data-href="https://www.facebook.com/unobtainium.li" 
+                data-width="500" 
+                data-small-header="true"  
+                data-hide-cover="true" 
+                data-show-facepile="false" 
+                data-show-posts="true">
+            <blockquote cite="https://www.facebook.com/unobtainium.li/" class="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/unobtainium.li/">Unobtainium</a>
+            </blockquote>
+        </div>
 
         <h2>Newest youtube Videos</h2>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLfSayz4JOkZgXUoe-cFa4sn836n19mJMj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

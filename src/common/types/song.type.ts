@@ -20,6 +20,6 @@ export interface SongFile {
     mimeType?: string;
     webViewLink?: string;
     iconLink?: string;
-    modifiedTime?: Date; 
+    modifiedTime?: string; 
     webContentLink?: string;
 }

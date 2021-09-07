@@ -1,3 +1,4 @@
+import { SongFile } from './../../app/types/song.type';
 import { GoogleFileType } from './../googleApi/googleFileType.model';
 import { GoogleApiHelper } from '../googleApi/google-api-helper';
 import { Song, SongFile, SongFolder } from '../../common/types/song.type';
@@ -94,9 +95,22 @@ class SongsService {
         }
       }
 
+      songObj.chordSheets?.sort(this.compareSongFile);
+      songObj.recordings?.sort(this.compareSongFile);
+      songObj.tabs?.sort(this.compareSongFile);
+
       // this.cacheService.set(cacheKey, songObj);
 
       return songObj;
+    }
+
+    private compareSongFile(a: SongFile, b: SongFile): number {
+      if (a.modifiedTime || '' > (b.modifiedTime || '')) {
+        return -1;
+      } else if (a.modifiedTime || '' > (b.modifiedTime || '') ) {
+        return 0;
+      }
+      return 0;
     }
 
     private async getFolder(name: string | null, id: string | null): Promise<SongFolder> {

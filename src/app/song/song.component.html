@@ -3,12 +3,12 @@
     <img  [src]="song?.imgUrl"/>
   </div>
   <div *ngIf="song?.description">
-    <h3>Description:</h3>
+    <h3>Beschreibung:</h3>
     {{song?.description}}
   </div>
 
   <div *ngIf="song?.chordSheets?.length > 0">
-    <div class="song-part-title">Cord Sheet:</div>
+    <div class="song-part-title">Google Drive files:</div>
     <div class="file-list" *ngFor="let aFile of song?.chordSheets">
       <a  [href]="aFile.webViewLink" target="_blank">{{aFile.name}} ({{aFile.modifiedTime | date}})</a>
     </div>
@@ -27,7 +27,7 @@
   </div>
 
   <div *ngIf="song?.tabs?.length">
-    <div class="song-part-title">Tabs</div>
+    <div class="song-part-title">Tabulaturen</div>
     <div *ngFor="let aTab of song?.tabs">
       <app-music-sheet [tabFile]="aTab"></app-music-sheet>
     </div>

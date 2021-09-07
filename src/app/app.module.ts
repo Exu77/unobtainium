@@ -1,3 +1,4 @@
+import { MainPageMembersComponent } from './main-page-members/main-page-members.component';
 import { SongLevelService } from './song-level/song-level.service';
 import { TodoService } from './todo/todo.service';
 import { SongListService } from './song-list/songs-list.service';
@@ -32,7 +33,7 @@ import { DeleteTodoComponent } from './todo/components/delete-todo/delete-todo.c
 import { SongLevelComponent } from './song-level/song-level.component';
 
 const appRoutes: Routes = [
-  { path: 'song-list', component: SongListComponent, canActivate: [AuthGuard]},
+  { path: 'song-list', component: MainPageMembersComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: '', component: MainPageComponent }
 ];
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     MainPageComponent,
     MusicSheetComponent,
     MainPageComponent,
+    MainPageMembersComponent,
     LoginComponent,
     TodoComponent,
     EditTodoComponent,

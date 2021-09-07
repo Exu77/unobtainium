@@ -55,5 +55,9 @@ export class SongListComponent {
           }
         });
       });
+
+      this.songFolderService.getRootFolder().subscribe(rootFolder => {
+        console.log('rootFolder', rootFolder);
+      })
   }
 }

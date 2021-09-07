@@ -1,5 +1,5 @@
 <h2 class="title-row"  (click)="showData = !showData">
-    <div>Todos <span class="header-counter" *ngIf="todoList?.length">({{todoList?.length}})</span></div>
+    <div>Aufgaben <span class="header-counter" *ngIf="todoList?.length">({{todoList?.length}})</span></div>
     <div>
         <div class="material-icons" (click)="openEditDialog({song: songFolder})">
             add
@@ -15,19 +15,19 @@
     
         <!-- Position Column -->
         <ng-container matColumnDef="song">
-        <th mat-header-cell *matHeaderCellDef> Song </th>
+        <th mat-header-cell *matHeaderCellDef> Lied </th>
         <td mat-cell *matCellDef="let element"> {{element.song?.name}} </td>
         </ng-container>
     
         <!-- Name Column -->
         <ng-container matColumnDef="descr">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <th mat-header-cell *matHeaderCellDef> Beschreibung </th>
         <td mat-cell *matCellDef="let element"> {{element.description}} </td>
         </ng-container>
     
         <!-- Weight Column -->
         <ng-container matColumnDef="resp">
-        <th mat-header-cell *matHeaderCellDef> Responsible </th>
+        <th mat-header-cell *matHeaderCellDef> Verantwortliche </th>
         <td mat-cell *matCellDef="let element"> {{element.responsible}} </td>
         </ng-container>
     

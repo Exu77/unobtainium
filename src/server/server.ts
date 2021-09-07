@@ -37,6 +37,7 @@ JsonFileManagerRoutes.initRoutes(app, googleApiHelper, 'song-level.json', 'song-
 
 
 app.get('*', function(req,res){
+    console.log('notfound?', req.url)
     res.header('Content-Type', 'text/html');
     res.status(200).sendFile(path.join(angularPath, 'index.html'));
     res.sendFile(path.join(angularPath, 'index.html'))

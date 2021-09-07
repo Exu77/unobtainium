@@ -1,7 +1,6 @@
 import { GoogleFileType } from './../googleApi/googleFileType.model';
 import { GoogleApiHelper } from '../googleApi/google-api-helper';
-import { Song } from '../../common/types/song.type';
-import { SongFile, SongFolder } from '../../common/types/song.type';
+import { Song, SongFile, SongFolder } from '../../common/types/song.type';
 import CacheService from '../cache.service';
 const { ErrorHandler } = require('./../error.handler')
 
@@ -13,12 +12,12 @@ class SongsService {
     private readonly ttlSeconds = 1;
     private googleApiHelper: GoogleApiHelper;
     private googleDrive: any;
-    private cacheService: CacheService;
+    // private cacheService: CacheService;
 
     constructor(googleApiHelper: GoogleApiHelper) {
         this.googleApiHelper = googleApiHelper;
         this.googleDrive = this.googleApiHelper.googleDrive;
-        this.cacheService = new CacheService(this.ttlSeconds);
+        // this.cacheService = new CacheService(this.ttlSeconds);
     }
 
     public async getSongFolders(): Promise<SongFolder[]> {
@@ -26,9 +25,9 @@ class SongsService {
         const cacheKey = this.cacheKeySongFolders;
 
         let queryString =  `'${this.googleApiHelper.rootFolder}' in parents and mimeType = '${GoogleFileType.FOLDER}'`;
-        const cachedResult = this.cacheService.get(cacheKey) as SongFolder[];
+        // const cachedResult = this.cacheService.get(cacheKey) as SongFolder[];
         
-        if (cachedResult) return Promise.resolve(cachedResult);
+        // if (cachedResult) return Promise.resolve(cachedResult);
         
         try {
           const tempResult = await this.googleDrive.files.list({
@@ -39,7 +38,7 @@ class SongsService {
 
           if(tempResult?.data?.files) {
             result = tempResult.data.files;
-            this.cacheService.set(cacheKey, result)
+            // this.cacheService.set(cacheKey, result)
           }
         } catch (error) {
           throw new ErrorHandler(500, error);
@@ -49,13 +48,25 @@ class SongsService {
         return result;
     }
 
+    public async getRootFolder() {
+      const aFolder: SongFolder = {
+        id: this.googleApiHelper.rootFolder,
+        name: '_website'
+      }
+      return await this.getFilesFromFolder(aFolder);
+    }
+
     public async getSongFiles(name: string | null, id: string | null): Promise<Song> {
       const aFolder = await this.getFolder(name, id);
+      return await this.getFilesFromFolder(aFolder);
+    }
 
-      const cacheKey = `${this.cacheKeySong}${aFolder.id}`;
-      const tempResult = this.cacheService.get<Song>(cacheKey);
+    private async getFilesFromFolder(aFolder: SongFolder) {
+    
+      // const cacheKey = `${this.cacheKeySong}${aFolder.id}`;
+      // const tempResult = this.cacheService.get<Song>(cacheKey);
 
-      if (tempResult) return Promise.resolve(tempResult);
+      // if (tempResult) return Promise.resolve(tempResult);
 
       const songObj: Song = {
         title: aFolder.name,
@@ -75,11 +86,15 @@ class SongsService {
         } else if (aFile.mimeType === GoogleFileType.AUDIO_MP3 || aFile.mimeType === GoogleFileType.AUDIO_M4A || aFile.mimeType === GoogleFileType.AUDIO_MPEG) {
           songObj.recordings?.push(aFile);
         } else {
-          console.warn('no idea what to do with this file', aFile.name, aFile.mimeType)
+          if (aFile.mimeType === GoogleFileType.FOLDER || aFile.mimeType === GoogleFileType.JSON || aFile.name === '.env') {
+            // ignore
+          } else {
+            console.warn('no idea what to do with this file', aFile.name, aFile.mimeType)
+          }
         }
       }
 
-      this.cacheService.set(cacheKey, songObj);
+      // this.cacheService.set(cacheKey, songObj);
 
       return songObj;
     }
@@ -120,6 +135,7 @@ class SongsService {
           }
           queryString += `mimeType = '${mimeType}'`;
         }
+        console.log('queryString', queryString)
         try {
           const tempResult = await this.googleDrive.files.list({
             q: queryString, 

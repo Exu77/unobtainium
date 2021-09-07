@@ -1,0 +1,16 @@
+.main-page-members {
+  margin: 0 auto;
+  padding: 20px;
+  color: white;
+  background: black;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+
+    .help-link {
+      color: yellow;
+      font-size: 30px;
+    }
+  }
+}

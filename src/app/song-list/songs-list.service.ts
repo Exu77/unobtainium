@@ -33,6 +33,16 @@ export class SongListService {
     );
   }
 
+  public getRootFolder(): Observable<Song> {
+    return this.http.get<Song>(`${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/rootFolder`)
+    .pipe(
+      tap(song => {}),
+      catchError(ErrorUtil.handleError<Song>(`${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/song`))
+    );
+  }
+  
+  
+
   public getSongFolders(): void {
     this.http.get<any[]>(`${environment.apiUrl}/${AuthenticationConstants.URL_API_SECURE}/googleDrive/songFolders`)
     .subscribe(files => {

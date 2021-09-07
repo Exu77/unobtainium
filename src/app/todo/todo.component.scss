@@ -5,6 +5,10 @@ table {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+
+    &:hover {
+        font-weight: bolder;
+    }
 }
 
 .mat-column-actions {

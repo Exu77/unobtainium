@@ -26,6 +26,16 @@ export class SongsRoutes {
                 res.status(error.statusCode).send(error.toString());
               });
           });
+
+          app.get(`/${AuthenticationConstants.URL_API_SECURE}/googleDrive/rootFolder`, function (req, res) {
+            console.log('root folder route')
+            songService.getRootFolder()
+              .then(song => res.json(song))
+              .catch(error => {
+                res.status(error.statusCode).send(error.toString());
+              })
+              ;
+          });
           
           app.get(`/${AuthenticationConstants.URL_API_SECURE}/googleDrive/song`, function (req, res) {
             songService.getSongFiles(req.query.name as string, null)

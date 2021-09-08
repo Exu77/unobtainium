@@ -18,7 +18,7 @@ export class SongLevelComponent {
 
   constructor(private readonly songLevelService: SongLevelService) { 
     this.songLevelService.allTodos$.subscribe((songLevelList: SongLevel[]) => {
-      const tempSl = songLevelList.find(aSl => aSl?.song?.id === this.songFolder.id);
+      const tempSl = songLevelList?.find(aSl => aSl?.song?.id === this.songFolder?.id);
       if (tempSl) {
         this.currentSongLevel = tempSl;
       } else {

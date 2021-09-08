@@ -2,11 +2,16 @@
     Aufgabe Löschen
 </h1>
 <div mat-dialog-content>
+    <h2 class="field-title">Lied</h2>
     <div>{{aTodo.song.name}}</div>
+    <h2 class="field-title">Beschreibung</h2>
     <div>{{aTodo.description}}</div>
-    <div>{{aTodo.responsible}}</div>
+    <h2 class="field-title">Verantwortliche</h2>
+    <mat-chip-list aria-label="Verantwortlichex">
+        <mat-chip *ngFor="let member of aTodo.responsibles">{{member.name}}</mat-chip>
+    </mat-chip-list>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-button [mat-dialog-close]="aTodo" cdkFocusInitial>Delete</button>
+    <button mat-button (click)="cancel()">Abbrechen</button>
+    <button mat-button [mat-dialog-close]="aTodo" cdkFocusInitial>Löschen</button>
 </div>

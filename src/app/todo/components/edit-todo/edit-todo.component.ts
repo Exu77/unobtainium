@@ -5,6 +5,8 @@ import { Todo } from './../../../../common/types/todo.type';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SongFolder } from '../../../../common/types/song.type';
+import { BAND_MEMBERS, COMPARE_BAND_MEMBERS } from '../../../../common/constants/band-members.constant';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-todo',
@@ -13,6 +15,8 @@ import { SongFolder } from '../../../../common/types/song.type';
 })
 export class EditTodoComponent implements OnInit {
   public songFolders$: Observable<SongFolder[]>;
+  public bandMemberComperator = COMPARE_BAND_MEMBERS;
+  public bandMembers = BAND_MEMBERS;
 
   constructor(
     public dialogRef: MatDialogRef<EditTodoComponent>,
@@ -23,10 +27,12 @@ export class EditTodoComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    
+    console.log('bandMembers', BAND_MEMBERS);
   }
 
   public cancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 
   public compareSongFolders(o1: SongFolder, o2: SongFolder): boolean {

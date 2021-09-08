@@ -2,9 +2,9 @@
     Aufgabe anpassen
 </h1>
 <div mat-dialog-content>
-    <mat-form-field appearance="fill">
+    <mat-form-field class="select-input" appearance="fill">
         <mat-label>Lied</mat-label>
-        <mat-select 
+        <mat-select
                 [compareWith]="compareSongFolders"
                 [(ngModel)]="aTodo.song">
             <mat-option>None</mat-option>
@@ -17,9 +17,11 @@
     <mat-label>Beschreibung</mat-label>
     <textarea matInput [(ngModel)]="aTodo.description"></textarea>
   </mat-form-field>
-  <mat-form-field  appearance="fill">
+  <mat-form-field class="select-input" appearance="fill">
     <mat-label>Verantwortliche</mat-label>
-    <input matInput [(ngModel)]="aTodo.responsible">
+    <mat-select [(ngModel)]="aTodo.responsibles" [compareWith]="bandMemberComperator" multiple>
+      <mat-option *ngFor="let member of bandMembers" [value]="member">{{member.name}}</mat-option>
+    </mat-select>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

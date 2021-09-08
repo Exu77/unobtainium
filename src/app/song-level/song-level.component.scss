@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     width: 200px;
+    color: darkgreen;
     
     .star-group {
         display: flex;
@@ -22,7 +23,7 @@
         color: red;
     }
 
-    .alert-yellow {
-        color: yellow;
+    .alert-medium {
+        color: darkorange;
     }
 }

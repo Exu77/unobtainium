@@ -4,7 +4,7 @@ import { TodoService } from './../todo/todo.service';
 import { SongListService } from './songs-list.service';
 import { SongFolder } from '../../common/types/song.type';
 import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { ThemePalette } from '@angular/material/core';
@@ -15,15 +15,18 @@ import { ThemePalette } from '@angular/material/core';
   styleUrls: ['./song-list.component.scss']
 })
 export class SongListComponent {
-  public songs$: Observable<SongFolder[]>;
+  public filteredSongs: SongFolder[] = [];
   public isLoading = true;
 
   public color: ThemePalette = 'primary';
   public mode: ProgressSpinnerMode = 'determinate';
   public value = 50;
   public todoCounter: any = {};
+  public searchTerm: string = '';
 
-  
+  private songSubscription: Subscription;
+  private allSongs: SongFolder[] = [];
+
   constructor(
     private readonly todoService: TodoService,
     private readonly songFolderService: SongListService,
@@ -32,10 +35,11 @@ export class SongListComponent {
   ) {
 
     this.isLoading = true;
-    this.songs$ = this.songFolderService.songFolderList$.pipe(
-      tap(resp => {
+    this.songSubscription = this.songFolderService.songFolderList$.subscribe(songFolders => {
+        this.allSongs = songFolders;
+        this.filterSongs();
         this.isLoading = false;
-      })
+      }
     );
 
     this.todoService.getTodos();
@@ -59,5 +63,17 @@ export class SongListComponent {
       this.songFolderService.getRootFolder().subscribe(rootFolder => {
         console.log('rootFolder', rootFolder);
       })
+  }
+
+  public filterSongs() {
+    const searchKeys = this.searchTerm.toLowerCase().split(' ');
+    this.filteredSongs = this.allSongs.filter(aSongFolder => {
+      for (const aSearchKey of searchKeys) {
+        if (aSongFolder.name.toLowerCase().indexOf(aSearchKey) === -1) {
+          return false;
+        }
+      }
+      return true;
+    })
   }
 }

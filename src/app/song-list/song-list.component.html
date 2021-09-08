@@ -1,8 +1,14 @@
 <div class="song-list">
-  <h2>Lieder:</h2>
+  <div class="header-row">
+    <h2>Lieder:</h2>
+    <mat-form-field class="search-field" appearance="fill">
+      <mat-label>Liedersuche</mat-label>
+      <input matInput [(ngModel)] = "searchTerm" (ngModelChange) = "filterSongs()">
+    </mat-form-field>
+</div>
   <div *ngIf="isLoading"> <mat-spinner></mat-spinner></div>
   <mat-accordion class="example-headers-align">
-      <mat-expansion-panel *ngFor="let aSong of songs$ | async" hideToggle>
+      <mat-expansion-panel *ngFor="let aSong of filteredSongs" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div>

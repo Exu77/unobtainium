@@ -1,4 +1,7 @@
 .song-list {
+  .header-row {
+    display: flex;
+  }
   mat-expansion-panel-header {
     mat-panel-title {
       justify-content: space-between;

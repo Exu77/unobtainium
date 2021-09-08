@@ -6,14 +6,12 @@ import { AuthenticationConstants } from './../../common/constants/authentication
 import { environment } from '../../environments/environment';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TodoService {
     public allTodos$: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
-    public faPencil = faPencilAlt;
     constructor(
         private http: HttpClient,
       ) { }

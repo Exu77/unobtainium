@@ -2,7 +2,6 @@ import { SongListService } from './../song-list/songs-list.service';
 import { SongFile } from './../../common/types/song.type';
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AlphaTabApi, Settings } from '@coderline/alphatab';
-import { faGuitar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-music-sheet',
@@ -12,7 +11,6 @@ import { faGuitar } from '@fortawesome/free-solid-svg-icons';
 export class MusicSheetComponent implements OnInit, OnChanges {
     public showMusicSheet = false;
     public score: any = {};
-    public faGuitar = faGuitar;
 
     @Input()
     public tabFile!: SongFile;

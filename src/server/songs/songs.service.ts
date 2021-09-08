@@ -1,4 +1,3 @@
-import { SongFile } from './../../app/types/song.type';
 import { GoogleFileType } from './../googleApi/googleFileType.model';
 import { GoogleApiHelper } from '../googleApi/google-api-helper';
 import { Song, SongFile, SongFolder } from '../../common/types/song.type';

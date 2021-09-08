@@ -24,7 +24,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TodoComponent } from './todo/todo.component';
 import { EditTodoComponent } from './todo/components/edit-todo/edit-todo.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -63,7 +62,6 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    FontAwesomeModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatTableModule,

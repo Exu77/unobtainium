@@ -18,7 +18,7 @@
                         <div *ngIf="score?.tracks?.length">
                             <div *ngFor="let aTrack of score?.tracks" class="at-track" (click)="trackClick(aTrack)">
                                 <div class="at-track-icon">
-                                    <fa-icon [icon]="faGuitar"></fa-icon>
+                                    <span class="material-icons">piano</span>
                                 </div>
                                 <div class="at-track-details">
                                     <div class="at-track-name">{{aTrack.name}}</div>

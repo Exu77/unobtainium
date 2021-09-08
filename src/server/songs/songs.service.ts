@@ -79,11 +79,18 @@ class SongsService {
   
       const songFiles = await this.getFileList(songObj.folderId, null);
       for (const aFile of songFiles) {
-        if (aFile.mimeType === GoogleFileType.PDF || aFile.mimeType === GoogleFileType.WORD || aFile.mimeType === GoogleFileType.GOOGLE_DOC) {
+        if (aFile.mimeType === GoogleFileType.PDF 
+          || aFile.mimeType === GoogleFileType.WORD 
+          || aFile.mimeType === GoogleFileType.GOOGLE_DOC
+          || aFile.mimeType === GoogleFileType.PNG
+          || aFile.mimeType === GoogleFileType.JPEG
+          || aFile.mimeType === GoogleFileType.GIF) {
           songObj.chordSheets?.push(aFile);
         } else if (aFile.mimeType === GoogleFileType.GUITAR_PRO || aFile.mimeType === GoogleFileType.ZIP) {
           songObj.tabs?.push(aFile);
-        } else if (aFile.mimeType === GoogleFileType.AUDIO_MP3 || aFile.mimeType === GoogleFileType.AUDIO_M4A || aFile.mimeType === GoogleFileType.AUDIO_MPEG) {
+        } else if (aFile.mimeType === GoogleFileType.AUDIO_MP3 
+            || aFile.mimeType === GoogleFileType.AUDIO_M4A 
+            || aFile.mimeType === GoogleFileType.AUDIO_MPEG) {
           songObj.recordings?.push(aFile);
         } else {
           if (aFile.mimeType === GoogleFileType.FOLDER || aFile.mimeType === GoogleFileType.JSON || aFile.name === '.env') {

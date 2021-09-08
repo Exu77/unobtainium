@@ -14,7 +14,7 @@ import { ThemePalette } from '@angular/material/core';
   styleUrls: ['./main-page-members.component.scss']
 })
 export class MainPageMembersComponent {
-  public isLoading = true;
+  public isLoading = false;
 
   public color: ThemePalette = 'primary';
   public mode: ProgressSpinnerMode = 'determinate';
@@ -29,15 +29,15 @@ export class MainPageMembersComponent {
     private readonly songLevelService: SongLevelService,
 
   ) {
-
-    this.isLoading = true;
-    this.todoService.getTodos();
-    this.songFolderService.getSongFolders();
-    this.songLevelService.getAll();
-
     this.songFolderService.getRootFolder().subscribe(rootFolder => {
       this.helpFile =  rootFolder.chordSheets?.find(aChordsheet => aChordsheet.name = 'Help Page')
       console.log('rootFolder', rootFolder, this.helpFile);
     });
+  }
+
+  public reload() {
+    this.todoService.getTodos();
+    this.songFolderService.getSongFolders();
+    this.songLevelService.getAll();
   }
 }

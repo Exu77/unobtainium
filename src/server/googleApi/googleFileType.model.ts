@@ -9,4 +9,7 @@ export class GoogleFileType {
     public static readonly WORD = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
     public static readonly GOOGLE_DOC = 'application/vnd.google-apps.document';
     public static readonly JSON = 'application/json';
+    public static readonly GIF = 'image/gif';
+    public static readonly JPEG = 'image/jpeg';
+    public static readonly PNG = 'image/png';
 }

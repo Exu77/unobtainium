@@ -1,10 +1,26 @@
 .song-list {
+  margin-top: 10px;
   .header-row {
     display: flex;
+    &-text {
+      margin-top: 8px;
+      margin-right: 10px;
+    }
   }
   mat-expansion-panel-header {
     mat-panel-title {
       justify-content: space-between;
     }
   }
+
+  .mat-expansion-panel {
+    background : #181818;
+  }
+  .mat-badge-small.mat-badge-above .mat-badge-content {
+      top: 2px;
+  }
+  .mat-badge-small.mat-badge-overlap.mat-badge-after .mat-badge-content {
+      right: -20px;
+  }
+
 }

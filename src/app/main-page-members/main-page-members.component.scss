@@ -8,9 +8,14 @@
     display: flex;
     justify-content: space-between;
 
-    .help-link {
-      color: yellow;
+    .menu-right {
       font-size: 30px;
+      display: flex;
+ 
+      .help-link {
+        color: yellow;      
+      }
     }
+
   }
 }

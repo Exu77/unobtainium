@@ -1,11 +1,15 @@
+import { GoogleApiHelper } from './googleApi/google-api-helper';
+import { AuthenticationRoutes } from './authentication/authentication.routes';
 import express = require('express');
-import ApiRoutes from './api-routes';
+import { SongsRoutes } from './songs/songs.routes';
+import { JsonFileManagerRoutes } from './googleApi/json-file-manager.routes';
 
 const path = require("path");
 const app: express.Application = express();
 
 const port = process.env.PORT || 3080;
-const angularPath = path.resolve(__dirname, '../angular-build');
+// carefull depending on what we compile the number of folder to go back might change
+const angularPath = path.resolve(__dirname, '../../angular-build');
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -17,18 +21,23 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-console.log('angular path',angularPath, __dirname);
-
 // handle Angular
 app.use(express.static(angularPath));
 
 
-// all the other routes
-const apiRoutes = new ApiRoutes(app);
+// init the Routes
+const googleApiHelper = new GoogleApiHelper();
+AuthenticationRoutes.initRoutes(app);
+SongsRoutes.initRoutes(app, googleApiHelper);
+JsonFileManagerRoutes.initRoutes(app, googleApiHelper, 'todos.json', 'todos')
+JsonFileManagerRoutes.initRoutes(app, googleApiHelper, 'song-level.json', 'song-level')
+
+//TodosRoutes.initRoutes(app, googleApiHelper);
+
 
 
 app.get('*', function(req,res){
-    console.log('index.hmtl', angularPath)
+    console.log('notfound?', req.url)
     res.header('Content-Type', 'text/html');
     res.status(200).sendFile(path.join(angularPath, 'index.html'));
     res.sendFile(path.join(angularPath, 'index.html'))

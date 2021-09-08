@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'styles/material_style';
+
+$desktop: 960px;
+$tablet: 768px;
+$mobile-large: 640px;
+$mobile: 480px;
+$mobile-small: 300px;
+
+html, body { 
+  height: 100%;  
+  background-color: black;
+  color: white;
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+
+  a {
+    &.material-icons {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+ .material-icons {
+    user-select: none;
+    cursor: pointer;
+    padding: 5px;
+
+    &:hover {
+        font-weight: bolder;
+    }
+  } 
+}
+
+html, body { height: 100%; }
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+
+  a {
+    color: white;
+  }
+}

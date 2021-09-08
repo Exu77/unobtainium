@@ -1,8 +1,7 @@
-import { SongsService } from './../services/songs.service';
-import { SongFile } from './../types/song.type';
-import { Component, OnInit, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { AlphaTabApi, Settings, CoreSettings } from '@coderline/alphatab';
-import { faGuitar, faDrum } from '@fortawesome/free-solid-svg-icons';
+import { SongListService } from './../song-list/songs-list.service';
+import { SongFile } from './../../common/types/song.type';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AlphaTabApi, Settings } from '@coderline/alphatab';
 
 @Component({
   selector: 'app-music-sheet',
@@ -12,14 +11,13 @@ import { faGuitar, faDrum } from '@fortawesome/free-solid-svg-icons';
 export class MusicSheetComponent implements OnInit, OnChanges {
     public showMusicSheet = false;
     public score: any = {};
-    public faGuitar = faGuitar;
 
     @Input()
-    public tabFile: SongFile;
+    public tabFile!: SongFile;
 
-    private alphaTabApi: AlphaTabApi;
+    private alphaTabApi!: AlphaTabApi;
 
-    constructor(private readonly songsServie: SongsService) {}
+    constructor(private readonly songListService: SongListService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tabFile']) {
@@ -43,7 +41,7 @@ export class MusicSheetComponent implements OnInit, OnChanges {
 
     private initAplphaTabs() {
       const wrapper = document.querySelector('.at-wrap');
-      const main = wrapper.querySelector('.at-main') as HTMLElement;
+      const main = wrapper?.querySelector('.at-main') as HTMLElement;
       const alphaSettings = new Settings();
       alphaSettings.core.fontDirectory = 'assets/fonts/';
       alphaSettings.core.scriptFile = 'https://cdn.jsdelivr.net/npm/@coderline/alphatab@1.2.1/dist/alphaTab.min.js';
@@ -51,12 +49,14 @@ export class MusicSheetComponent implements OnInit, OnChanges {
       alphaSettings.player.enablePlayer = true;
       alphaSettings.player.enableUserInteraction = true;
 
-      alphaSettings.core.file = this.songsServie.getFilecontentUrl(this.tabFile.id);
+      if (this.tabFile.id) {
+        alphaSettings.core.file = this.songListService.getFilecontentUrl(this.tabFile.id);
+      }
 
       this.alphaTabApi = new AlphaTabApi(main, alphaSettings);
 
       // overlay logic
-      const overlay = wrapper.querySelector('.at-overlay') as HTMLElement;
+      const overlay = wrapper?.querySelector('.at-overlay') as HTMLElement;
       this.alphaTabApi.renderStarted.on(() => {
         overlay.style.display = 'flex';
       });
@@ -64,14 +64,14 @@ export class MusicSheetComponent implements OnInit, OnChanges {
         overlay.style.display = 'none';
       });
 
-      const trackList = wrapper.querySelector('.at-track-list');
+      const trackList = wrapper?.querySelector('.at-track-list');
 // fill track list when the score is loaded
       this.alphaTabApi.scoreLoaded.on((score) => {
         // clear items
         // trackList.innerHTML = '';
         this.score = score;
         // generate a track item for all tracks of the score
-        this.score.tracks.forEach((track) => {});
+        // this.score.tracks.forEach((track) => {});
       });
     }
   }

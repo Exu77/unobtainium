@@ -1,0 +1,29 @@
+.song-level {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    color: darkgreen;
+    
+    .star-group {
+        display: flex;
+    }
+    .material-icons {
+        padding: 0;
+    }
+
+    .last-played-group {
+        display: flex;
+        .last-played-text {
+            padding-right: 8px;
+            margin-top: 3px;
+        }
+    }
+
+    .alert-red {
+        color: red;
+    }
+
+    .alert-medium {
+        color: darkorange;
+    }
+}

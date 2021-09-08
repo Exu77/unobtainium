@@ -1,6 +1,6 @@
-import { Song } from './../types/song.type';
-import { SongsService } from './../services/songs.service';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { SongListService } from './../song-list/songs-list.service';
+import { Song, SongFolder } from './../../common/types/song.type';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,24 +12,13 @@ export class SongComponent implements OnInit {
   public song: Song;
 
   @Input()
-  public songName: string;
-  constructor(private _Activatedroute: ActivatedRoute,
-              private _router: Router,
-              private songService: SongsService) { } 
-
-  sub;
+  public songFolder: SongFolder;
+  constructor(private songService: SongListService) { } 
 
   ngOnInit() {
-    this.sub = this._Activatedroute.paramMap.subscribe(params => {
-      const songName = params.get('id') ? params.get('id') : this.songName;
-      this.songService.getSong(songName).subscribe(aSong => {
+      this.songService.getSong(this.songFolder.name).subscribe(aSong => {
         this.song = aSong;
       });
-    });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
 }

@@ -11,10 +11,10 @@ import { AuthenticationService } from './util/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
+    loginForm!: FormGroup;
     loading = false;
     submitted = false;
-    returnUrl: string;
+    returnUrl!: string;
     error = '';
 
     constructor(

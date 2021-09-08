@@ -13,8 +13,8 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     // needed for reload after navigation
-    if (FB != null && FB.XFBML != null) {
-      FB.XFBML.parse();
+    if (FB != null && FB?.XFBML != null) {
+      FB?.XFBML?.parse();
     }
   }
 

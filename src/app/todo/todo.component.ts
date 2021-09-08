@@ -71,6 +71,7 @@ export class TodoComponent implements OnInit {
   }
 
   public filterClickBandMember(member: IBandMember) {
+    this.showData = true;
     if (this.selectedBandMembers[member.name]) {
       delete this.selectedBandMembers[member.name];
     } else {

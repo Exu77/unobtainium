@@ -18,6 +18,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,6 +33,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { DeleteTodoComponent } from './todo/components/delete-todo/delete-todo.component';
 import { SongLevelComponent } from './song-level/song-level.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatCardModule} from '@angular/material/card';
 
 const appRoutes: Routes = [
   { path: 'song-list', component: MainPageMembersComponent, canActivate: [AuthGuard]},
@@ -72,6 +75,9 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatChipsModule,
     MatBadgeModule,
+    MatGridListModule,
+    FlexLayoutModule,
+    MatCardModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

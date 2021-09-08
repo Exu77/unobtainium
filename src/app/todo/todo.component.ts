@@ -22,7 +22,7 @@ export class TodoComponent implements OnInit {
   public showData = false;
   public numberOfTodos = 0;
   public displayedColumns: string[] = ["song", "descr", "resp", "actions"];
-  public bandMembers = BAND_MEMBERS;
+  public bandMembers: Set<IBandMember> = new Set();
   public selectedBandMembers:IBandMemberClass =  {};
   public filteredTodos: Todo[] = [];
 
@@ -38,6 +38,10 @@ export class TodoComponent implements OnInit {
     this.todoService.allTodos$.subscribe(inputTodoList => {
       this.allTodos = inputTodoList;
       this.filterTodolist()
+      this.bandMembers.clear();
+      this.filteredTodos.forEach(aTodo => {
+        aTodo.responsibles?.forEach(aResp => this.bandMembers.add(aResp));
+      })
       this.numberOfTodos = this.filteredTodos.length;
     });
   }

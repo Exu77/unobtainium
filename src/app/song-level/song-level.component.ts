@@ -37,10 +37,23 @@ export class SongLevelComponent {
     event.stopPropagation();
   }
 
+  public updateLastPlayedPicker(event: any) {
+    this.updateDate(new Date(event.value).toDateString());
+  }
+
   public updateLastPlayed(event: any): void {
-    this.currentSongLevel.playedLast = new Date().toDateString();
-    this.songLevelService.save(this.currentSongLevel);
+    this.updateDate(new Date().toDateString());
     event.stopPropagation();
+  }
+
+  public openDatePicer(picker: any, event: any) {
+    picker.open();
+    event.stopPropagation();
+  }
+
+  private updateDate(dateString: string): void {
+    this.currentSongLevel.playedLast = dateString;
+    this.songLevelService.save(this.currentSongLevel);
   }
 
   private calculateLastPlayed() {

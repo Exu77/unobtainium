@@ -35,6 +35,8 @@ import { SongLevelComponent } from './song-level/song-level.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const appRoutes: Routes = [
   { path: 'song-list', component: MainPageMembersComponent, canActivate: [AuthGuard]},
@@ -78,6 +80,8 @@ const appRoutes: Routes = [
     MatGridListModule,
     FlexLayoutModule,
     MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

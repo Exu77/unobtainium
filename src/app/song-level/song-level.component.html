@@ -1,6 +1,6 @@
 <div class="song-level">
     <div class="star-group">
-        <div class="star-container" 
+        <div fxShow.xs="false" class="star-container" 
                 *ngFor="let theIdx of [1,2,3,4,5]" 
                 (click)="updateProficiency($event, theIdx)"
                 [class.alert-medium]="currentSongLevel?.proficiency < 4"

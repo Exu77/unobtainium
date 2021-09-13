@@ -1,7 +1,7 @@
 
 <div class="tab-title">
     <div>{{tabFile.name}}</div>
-    <button (click)="toggleSheet()">{{showMusicSheet ? 'hide' : 'show'}}</button>
+    <div (click)="toggleSheet()" class="visibility-button material-icons">{{showMusicSheet ? 'visibility_off' : 'visibility'}}</div>
 </div>
 
 <div [class.hidden]="!showMusicSheet">

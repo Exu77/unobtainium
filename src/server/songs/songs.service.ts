@@ -90,6 +90,7 @@ class SongsService {
           songObj.tabs?.push(aFile);
         } else if (aFile.mimeType === GoogleFileType.AUDIO_MP3 
             || aFile.mimeType === GoogleFileType.AUDIO_M4A 
+            || aFile.mimeType === GoogleFileType.AUDIO_OGG 
             || aFile.mimeType === GoogleFileType.AUDIO_MPEG) {
           songObj.recordings?.push(aFile);
         } else {

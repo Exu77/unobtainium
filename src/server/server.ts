@@ -31,6 +31,7 @@ AuthenticationRoutes.initRoutes(app);
 SongsRoutes.initRoutes(app, googleApiHelper);
 JsonFileManagerRoutes.initRoutes(app, googleApiHelper, 'todos.json', 'todos')
 JsonFileManagerRoutes.initRoutes(app, googleApiHelper, 'song-level.json', 'song-level')
+JsonFileManagerRoutes.initRoutes(app, googleApiHelper, 'song-link.json', 'song-link')
 
 //TodosRoutes.initRoutes(app, googleApiHelper);
 

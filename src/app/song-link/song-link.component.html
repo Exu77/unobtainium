@@ -1,0 +1,32 @@
+<div class="app-link">
+    <h2 class="title-row" (click)="showData = !showData">
+        <div>
+            Links
+        </div>
+        <div class="title-part-left">
+            <div class="material-icons" (click)="openEditDialog({song: songFolder}, $event)">
+                add
+            </div>
+        </div>
+    </h2>
+
+    <div class="link-group"  *ngIf="showData">
+        <div *ngFor="let aLink of filteredLinks">
+            <mat-card class="link-card" [class.do-hover]="mouseOverEnabled4Ctrl" (click)="openLink(aLink.link)">
+                <mat-card-content>
+                    <div class="link-card-control" (mouseenter)="mouseOverEnabled4Ctrl = false" (mouseleave)="mouseOverEnabled4Ctrl = true">
+                        <div class="link-card-control-left "  (click)="openEditDialog(aLink, $event)">
+                            <div class="material-icons">edit</div>
+                        </div>
+                        <div class="link-card-control-right" (click)="openDeletetDialog(aLink, $event)">
+                            <div class="material-icons">delete</div>
+                        </div>
+                    </div>
+                    <div class=link-card-link>
+                        <div>{{aLink.name}}</div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div> 
+</div>

@@ -3,12 +3,13 @@
     <img  [src]="song?.imgUrl"/>
   </div>
   <div *ngIf="song?.description">
-    <h3>Beschreibung:</h3>
+    <h2>Beschreibung:</h2>
     {{song?.description}}
   </div>
 
+
   <div *ngIf="song?.chordSheets?.length > 0">
-    <div class="song-part-title">Google Drive files:</div>
+    <h2 class="song-part-title">Google Drive files:</h2>
     <div class="file-list" *ngFor="let aFile of song?.chordSheets">
       <a  [href]="aFile.webViewLink" target="_blank">{{aFile.name}} ({{aFile.modifiedTime | date}})</a>
     </div>
@@ -16,7 +17,7 @@
 
 
   <div *ngIf="song?.recordings?.length > 0">
-    <div class="song-part-title">Aufnahmen</div>
+    <h2 class="song-part-title">Aufnahmen</h2>
     <div class="audio-player" *ngFor="let aRec of song?.recordings">
       <div class="audio-title">{{aRec.name}} ({{aRec.modifiedTime | date}})</div>
       <audio controls>
@@ -26,13 +27,14 @@
     </div>
   </div>
 
-  <div *ngIf="song?.tabs?.length">
-    <div class="song-part-title">Tabulaturen</div>
+  <!-- <div *ngIf="song?.tabs?.length">
+    <h2 class="song-part-title">Tabulaturen</h2>
     <div *ngFor="let aTab of song?.tabs">
       <app-music-sheet [tabFile]="aTab"></app-music-sheet>
     </div>
     
-  </div>
+  </div> -->
 
   <app-todo [songFolder]="songFolder"></app-todo>
+  <app-song-link [songFolder]="songFolder"></app-song-link> 
 </div>

@@ -31,7 +31,7 @@ export class MainPageMembersComponent {
   ) {
     this.songFolderService.getRootFolder().subscribe(rootFolder => {
       this.helpFile =  rootFolder.chordSheets?.find(aChordsheet => aChordsheet.name = 'Help Page')
-      console.log('rootFolder', rootFolder, this.helpFile);
+
     });
   }
 

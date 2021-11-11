@@ -1,3 +1,4 @@
+import { File } from './google-api.types';
 import { ObjectWithid } from '../../common/types/object-with-id.type';
 import { GoogleFileType } from './googleFileType.model';
 import { Todo } from '../../common/types/todo.type';
@@ -10,7 +11,7 @@ const {
 export class JsonFileManager {
     private googleApiHelper: GoogleApiHelper;
     private googleDrive: any;
-    private jsonFileId: string | undefined;
+    private jsonFileId: string = '';
 
     private readonly jsonFileName: string;
 
@@ -21,15 +22,15 @@ export class JsonFileManager {
         this.googleApiHelper = googleApiHelper;
         this.googleDrive = this.googleApiHelper.googleDrive;
         this.jsonFileName = fileName;
+        this.getFileId().then((dummy) => {
+            console.log(`JsonFileManager Initialized: ${this.jsonFileName} = ${this.jsonFileId}`)
+        })
     }
 
     public async getAll(): Promise<ObjectWithid[]> {
         let result: ObjectWithid[] = [];
-        const jsonFileId = await this.getFileId();
-        if(jsonFileId) {
-            const tempResult = await this.googleApiHelper.getTextFileAsString(jsonFileId);
-            result = JSON.parse(tempResult) as ObjectWithid[];
-        }
+        const tempResult = await this.googleApiHelper.getTextFileAsString(this.jsonFileId);
+        result = JSON.parse(tempResult) as ObjectWithid[];
         return result;
     }
 
@@ -68,11 +69,24 @@ export class JsonFileManager {
         return objList;
     }
 
-    private async getFileId(): Promise<string> {
-        if (this.jsonFileId) return this.jsonFileId;
+    private async addFile(): Promise<string> {
+        var fileMetadata = {
+            'name' : this.jsonFileName,
+            'mimeType' : GoogleFileType.JSON,
+            'parents': [this.googleApiHelper.rootFolder]
+          };
+        return await this.googleDrive.files.create({
+            resource: fileMetadata,
+        }).then((response: any) => {
+            console.log('trying to add the file ', fileMetadata, response.data);
+            return response?.data?.id as String;
+        });
+    }
+
+    private async getFileId(): Promise<void> {
+        if (this.jsonFileId) return;
 
         let queryString =  `'${this.googleApiHelper.rootFolder}' in parents and name = '${this.jsonFileName}'`;
-        let result: string = '';
         try {
             const tempResult = await this.googleDrive.files.list({
                 q: queryString, 
@@ -80,17 +94,16 @@ export class JsonFileManager {
                 orderBy: 'name'
               } );
   
-            if(tempResult?.data?.files) {
-                result = tempResult.data.files[0].id as string;
+            if(tempResult?.data?.files && tempResult?.data?.files[0]) { 
+                this.jsonFileId = tempResult.data.files[0].id as string;
             }
           } catch (error) {
             throw new ErrorHandler(500, error);
           }
-          if (!result) {
-            throw new Error('todoFile not found ' + this.jsonFileName);
+          if (!this.jsonFileId) {
+            this.jsonFileId = await this.addFile();
+            this.uploadFile([]);
         }
-
-        return result;
     }
 
         
@@ -101,8 +114,6 @@ export class JsonFileManager {
     }
 
     private async uploadFile(objList: ObjectWithid[]) {
-        const todoFileId = await this.getFileId();
-
-        await this.googleApiHelper.updateJsonFile(todoFileId, objList);
+        await this.googleApiHelper.updateJsonFile(this.jsonFileId, objList);
     }
 }

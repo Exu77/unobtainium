@@ -28,7 +28,6 @@ export class SongsRoutes {
           });
 
           app.get(`/${AuthenticationConstants.URL_API_SECURE}/googleDrive/rootFolder`, function (req, res) {
-            console.log('root folder route')
             songService.getRootFolder()
               .then(song => res.json(song))
               .catch(error => {

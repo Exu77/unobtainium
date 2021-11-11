@@ -60,9 +60,7 @@ export class SongListComponent {
         });
       });
 
-      this.songFolderService.getRootFolder().subscribe(rootFolder => {
-        console.log('rootFolder', rootFolder);
-      })
+      this.songFolderService.getRootFolder().subscribe(rootFolder => {})
   }
 
   public filterSongs() {

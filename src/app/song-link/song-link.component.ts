@@ -34,12 +34,10 @@ export class SongLinkComponent implements OnInit {
       this.allLinks = inputLinkList;
       this.filterLinks();
       this.showData = this.filteredLinks.length > 0;
-      console.log('filtered links', this.allLinks, this.filteredLinks);
     }); 
   }
 
   public openEditDialog(aLink: SongLink, event: any): void {
-    console.log('delete', aLink, event);
     const dialogRef = this.dialog.open(EditSongLinkComponent, {
       width: '80%',
       data: aLink
@@ -55,7 +53,6 @@ export class SongLinkComponent implements OnInit {
   }
 
   public openDeletetDialog(aLink: SongLink, event: any): void {
-    console.log('delete', aLink, event);
     const dialogRef = this.dialog.open(DeleteSongLinkComponent, {
       width: '80%',
       data: aLink

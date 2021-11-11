@@ -156,7 +156,7 @@ class SongsService {
           }
           queryString += `mimeType = '${mimeType}'`;
         }
-        console.log('queryString', queryString)
+
         try {
           const tempResult = await this.googleDrive.files.list({
             q: queryString, 

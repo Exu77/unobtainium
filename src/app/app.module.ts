@@ -1,3 +1,6 @@
+import { SongLinkService } from './song-link/song-link.service';
+
+import { SongLinkComponent } from './song-link/song-link.component';
 import { MainPageMembersComponent } from './main-page-members/main-page-members.component';
 import { SongLevelService } from './song-level/song-level.service';
 import { TodoService } from './todo/todo.service';
@@ -37,6 +40,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DeleteSongLinkComponent } from './song-link/components/delete-song-link/delete-song-link.component';
+import { EditSongLinkComponent } from './song-link/components/edit-song-link/edit-song-link.component';
 
 const appRoutes: Routes = [
   { path: 'song-list', component: MainPageMembersComponent, canActivate: [AuthGuard]},
@@ -58,7 +63,10 @@ const appRoutes: Routes = [
     TodoComponent,
     EditTodoComponent,
     DeleteTodoComponent,
-    SongLevelComponent,    
+    SongLevelComponent,
+    SongLinkComponent,
+    DeleteSongLinkComponent,
+    EditSongLinkComponent,    
   ],
   imports: [
     CommonModule,
@@ -89,6 +97,7 @@ const appRoutes: Routes = [
     SongListService,
     TodoService,
     SongLevelService,
+    SongLinkService,
   ],
   bootstrap: [AppComponent]
 })

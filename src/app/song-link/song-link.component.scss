@@ -1,0 +1,77 @@
+.app-link {
+    margin-top: 10px;
+
+
+    .link-group {
+        display: flex;
+    
+        .link-card {
+            cursor: pointer;
+            width: fit-content;
+            min-width: 120px;
+            margin: 0 8px 8px 0;
+            &.do-hover:hover {
+                font-weight: bolder;
+            }
+
+            .link-card-control {
+                display: flex;
+                justify-content: stretch;
+
+                div {
+                    width: -webkit-fill-available;
+                    font-size: 16px;
+
+                    display: flex;
+                    justify-content: space-around;
+
+                    &:hover {
+                        font-weight: bolder;
+                        background-color: black;
+                        border-radius: 11px;
+                    }
+                }
+
+                .link-card-control-left {
+                    padding-right: 8px;
+                }
+
+                .link-card-control-right {
+                    text-align: right;
+                }
+            }
+
+            .link-card-link {
+                padding-top: 8px;
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+    }
+
+    .title-row {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+
+        &:hover {
+            font-weight: bolder;
+        }
+
+        .title-part-left {
+            display: flex;
+        }
+
+    }
+
+    .mat-badge-small.mat-badge-above .mat-badge-content {
+        top: 4px;
+    }
+    .mat-badge-small.mat-badge-overlap.mat-badge-after .mat-badge-content {
+        right: -14px;
+    }
+
+    .mat-column-actions {
+        width: 70px;
+    }
+}

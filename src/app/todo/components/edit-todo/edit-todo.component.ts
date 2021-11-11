@@ -26,10 +26,7 @@ export class EditTodoComponent implements OnInit {
     this.songFolders$ = this.songListService.songFolderList$;
   };
 
-  ngOnInit(): void {
-    
-    console.log('bandMembers', BAND_MEMBERS);
-  }
+  ngOnInit(): void {}
 
   public cancel(): void {
     this.dialogRef.close(null);

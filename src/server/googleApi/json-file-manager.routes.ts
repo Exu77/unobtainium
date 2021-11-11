@@ -9,7 +9,6 @@ export class JsonFileManagerRoutes {
         const jsonService = new JsonFileManager(googleApiHelper, fileName);
 
         app.get(`/${AuthenticationConstants.URL_API_SECURE}/${routeName}/getAll`, function (req, res) {
-            console.log('get all totods')
             jsonService.getAll()
             .then((response: any) => {
                 return res.json(response);

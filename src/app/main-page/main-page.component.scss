@@ -1,5 +1,13 @@
 .main-page {
+    width: 50%;
+    margin: 0 auto;
     padding: 20px;
+    background-color: white;
+
+    .container {
+        width: 75%; /* Can be in percentage also. */
+        margin: 0 auto;
+    }
 
     .tile-content {
         padding: 0 10px 10px 0;

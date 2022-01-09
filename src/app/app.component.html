@@ -1,12 +1,12 @@
 <div class="app">
-<div class="titlePane"  routerLink="/">
-  <span class="title"> UNOBTAINIUM</span>
-</div>
-<div class="menuPane">
-  <div class="menuItem" [routerLink]="['/song-list']" >
-    Mitglieder
+  <div class="menuPane">
+    <div class="menuItem" [routerLink]="['/song-list']" >
+      Mitglieder
+    </div>
   </div>
-</div>
-<!-- The routed views render in the <router-outlet>-->
-<router-outlet></router-outlet>
+  <div class="titlePane"  routerLink="/">
+    <span class="title"> UNOBTAINIUM</span>
+  </div>
+  <!-- The routed views render in the <router-outlet>-->
+  <router-outlet></router-outlet>
 </div>

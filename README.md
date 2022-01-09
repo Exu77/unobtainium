@@ -2,12 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
+## Development Server
+Run 'heroku local dev' the server will be started on `http://localhost:5000/` with the variables from the .env file. As the .env file is not in the repository you have to download it from the google drive _website folder
+
 ## Development Client
 
 Run `npm run serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Develpment Server
-Run 'heroku local dev' the server will be started on `http://localhost:5000/` with the variables from the .env file. As the .env file is not in the repository you have to download it from the google drive _website folder
 
 ## Alphat Tab
 Kann weiter implementiert werden https://www.alphatab.net/docs/tutorial-web/viewport 

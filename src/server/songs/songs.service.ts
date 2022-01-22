@@ -112,10 +112,10 @@ class SongsService {
     }
 
     private compareSongFile(a: SongFile, b: SongFile): number {
-      if (a.modifiedTime || '' > (b.modifiedTime || '')) {
+      if ((a.modifiedTime || '') > (b.modifiedTime || '')) {
         return -1;
-      } else if (a.modifiedTime || '' > (b.modifiedTime || '') ) {
-        return 0;
+      } else if ((a.modifiedTime || '') < (b.modifiedTime || '')) {
+        return 1;
       }
       return 0;
     }

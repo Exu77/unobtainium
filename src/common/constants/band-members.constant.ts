@@ -1,6 +1,5 @@
 import { IBandMember } from './../types/member.type';
 export const BAND_MEMBERS: IBandMember[] = [
-    {name:"Yvonne"},
     {name:"Christian"},
     {name:"Dieter"},
     {name:"Ritchie"},

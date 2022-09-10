@@ -1,12 +1,19 @@
 <div class="app">
   <div class="menuPane">
+    <div>
+      <a href="mailto:band@unobtainium.li"><span class="menu-item clickable material-icons">
+        email
+        </span></a>
+    </div>
+    <div class="menu-item titlePane"  routerLink="/">
+      <span class="title"> UNOBTAINIUM</span>
+    </div>
     <div class="menuItem" [routerLink]="['/song-list']" >
       Mitglieder
     </div>
   </div>
-  <div class="titlePane"  routerLink="/">
-    <span class="title"> UNOBTAINIUM</span>
-  </div>
+  
+  
   <!-- The routed views render in the <router-outlet>-->
   <router-outlet></router-outlet>
 </div>
